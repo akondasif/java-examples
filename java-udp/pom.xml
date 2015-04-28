@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+             
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>es.devcircus</groupId>
+        <artifactId>java-examples</artifactId>
+        <version>0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!-- The basics -->
+    <groupId>es.devcircus</groupId>
+    <artifactId>java-udp-examples</artifactId>
+    <version>0.1-SNAPSHOT</version>    
+    <packaging>pom</packaging>
+    <modules>
+        <module>udp-example-01</module>
+    </modules>
+    
+    <!-- More Project Information -->
+    <name>Java UDP Examples</name>
+    <url>http://www.devcircus.org</url>
+    <developers>
+        <developer>
+            <id>adrian.novegil</id>
+            <name>Adrian Novegil Toledo</name>
+            <email>adrian.novegil@gmail.com</email>
+            <organization>DevCircus</organization>
+        </developer>       
+    </developers>
+    <properties>
+    </properties>
+</project>
