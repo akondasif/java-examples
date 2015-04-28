@@ -23,9 +23,9 @@ import java.net.*;
  * @author Adrian Novegil <adrian.novegil@gmail.com>
  */
 public class TRecibeUDP extends Object {
-    
-    DatagramSocket MiSocket;
-    DatagramPacket Paquete;
+
+    DatagramSocket miSocket;
+    DatagramPacket paquete;
     byte[] buffer;
 
     /**
@@ -36,25 +36,25 @@ public class TRecibeUDP extends Object {
      * eficiente ya que como podemos observar cada vez que enviarmos un mensaje
      * abrimos y cerramos el socket.
      *
-     * @param Puerto Puerto en el que vamos a hacer la recepción.
-     * @param TamanioMaximoMensaje Tamaño máximo de mensaje.
+     * @param puerto Puerto en el que vamos a hacer la recepción.
+     * @param tamanioMaximoMensaje Tamaño máximo de mensaje.
      * @return String que contiene la información recivida.
      */
-    public String Recibe(int Puerto, int TamanioMaximoMensaje) {
-        try {            
+    public String Recibe(int puerto, int tamanioMaximoMensaje) {
+        try {
             // Abrimos el socket en el puerto definido.
-            MiSocket = new DatagramSocket(Puerto);
+            miSocket = new DatagramSocket(puerto);
             // Definimos el buffer donde vamos a leer el mensaje.
-            buffer = new byte[TamanioMaximoMensaje];
+            buffer = new byte[tamanioMaximoMensaje];
             // Definimos el paquete que va a encapsular el mensaje recivido.
-            Paquete = new DatagramPacket(buffer, buffer.length);
+            paquete = new DatagramPacket(buffer, buffer.length);
             // Solicitamos la recepción del mensaje.
-            MiSocket.receive(Paquete);
+            miSocket.receive(paquete);
             // Cerramos el socket.
-            MiSocket.close();
+            miSocket.close();
         } catch (Exception e) {
             System.out.println("Error");
-        } //try
-        return new String(Paquete.getData()).substring(0, Paquete.getLength());
+        }
+        return new String(paquete.getData()).substring(0, paquete.getLength());
     }
 }

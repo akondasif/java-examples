@@ -37,61 +37,61 @@ import java.awt.event.ActionListener;
  */
 public class Talk {
 
-    static final int TamanioMaximoMensaje = 90;
+    static final int tamanioMaximoMensaje = 90;
 
-    TextArea AreaRecibir;
-    TextArea AreaEnviar;
-    TextField HostDestino;
-    Button BotonEnviar;
-    String MensajeRecibido;
-    int PuertoOrigen, PuertoDestino;
+    TextArea areaRecibir;
+    TextArea areaEnviar;
+    TextField hostDestino;
+    Button botonEnviar;
+    String mensajeRecibido;
+    int puertoOrigen, puertoDestino;
 
-    TRecibeUDP InstanciaRecibeUDP;
-    TEnviaUDP InstanciaEnviaUDP;
+    TRecibeUDP instanciaRecibeUDP;
+    TEnviaUDP instanciaEnviaUDP;
 
     /**
      *
-     * @param PuertoOrigen
-     * @param PuertoDestino
+     * @param puertoOrigen
+     * @param puertoDestino
      */
-    public Talk(int PuertoOrigen, int PuertoDestino) {
+    public Talk(int puertoOrigen, int puertoDestino) {
         // Definimos los puertos origen y destino de nuestro programa.
-        this.PuertoOrigen = PuertoOrigen;
-        this.PuertoDestino = PuertoDestino;
+        this.puertoOrigen = puertoOrigen;
+        this.puertoDestino = puertoDestino;
         // Instanciamos las clases auxiliares que se encargaran del envío y 
         // recepción de los mensajes.
-        InstanciaRecibeUDP = new TRecibeUDP();
-        InstanciaEnviaUDP = new TEnviaUDP();
+        instanciaRecibeUDP = new TRecibeUDP();
+        instanciaEnviaUDP = new TEnviaUDP();
         // Definimos los elementos de la interfaz.
-        Frame Marco = new Frame("Talk");
+        Frame marco = new Frame("Talk");
         Panel panel = new Panel();
-        Label EtiquetaMensajeSaliente = new Label("Mensaje Saliente:");
-        Label EtiquetaMensajeEntrante = new Label("Mensaje Entrante:");
-        Label EtiquetaHostDestino = new Label("Host destino");
-        AreaRecibir = new TextArea(3, 24);
-        AreaEnviar = new TextArea(3, 24);
-        HostDestino = new TextField("127.0.0.1");
-        BotonEnviar = new Button("Enviar");
+        Label etiquetaMensajeSaliente = new Label("Mensaje Saliente:");
+        Label etiquetaMensajeEntrante = new Label("Mensaje Entrante:");
+        Label etiquetaHostDestino = new Label("Host destino");
+        areaRecibir = new TextArea(3, 24);
+        areaEnviar = new TextArea(3, 24);
+        hostDestino = new TextField("127.0.0.1");
+        botonEnviar = new Button("Enviar");
         // Configuramos los elementos de la interfaz.
-        Marco.setSize(250, 280);
-        Marco.setLayout(new BorderLayout());
-        Marco.add("Center", panel);
-        panel.add(EtiquetaHostDestino);
-        panel.add(HostDestino);
-        panel.add(BotonEnviar);
-        panel.add(EtiquetaMensajeSaliente);
-        panel.add(AreaEnviar);
-        panel.add(EtiquetaMensajeEntrante);
-        panel.add(AreaRecibir);
+        marco.setSize(250, 280);
+        marco.setLayout(new BorderLayout());
+        marco.add("Center", panel);
+        panel.add(etiquetaHostDestino);
+        panel.add(hostDestino);
+        panel.add(botonEnviar);
+        panel.add(etiquetaMensajeSaliente);
+        panel.add(areaEnviar);
+        panel.add(etiquetaMensajeEntrante);
+        panel.add(areaRecibir);
         // Mostramos la interfaz.
-        Marco.show();
+        marco.show();
         // Instanciamos los threads que se encargaran de la recepción y envío de
         // la información.
-        TalkRecibir HiloRecibir = new TalkRecibir();
-        TalkEnviar HiloEnviar = new TalkEnviar();
+        TalkRecibir hiloRecibir = new TalkRecibir();
+        TalkEnviar hiloEnviar = new TalkEnviar();
         // Lanzamos la ejecución de los threads.
-        HiloRecibir.start();
-        HiloEnviar.start();
+        hiloRecibir.start();
+        hiloEnviar.start();
     }
 
     /**
@@ -100,8 +100,8 @@ public class Talk {
      * @param args Parámetros de ejecución del programa.
      */
     public static void main(String[] args) {
-//        Talk Instancia = new Talk(5000, 5002);
-        Talk Instancia = new Talk(5002, 5000);
+//        Talk instancia = new Talk(5000, 5002);
+        Talk instancia = new Talk(5002, 5000);
     }
 
     /**
@@ -117,7 +117,7 @@ public class Talk {
         public void run() {
             // Asociamos el evento que se encargará de la gestión del envío de los
             // mensajes.
-            BotonEnviar.addActionListener(new RespuestaAEnviar());
+            botonEnviar.addActionListener(new RespuestaAEnviar());
         }
 
         /**
@@ -135,15 +135,15 @@ public class Talk {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Recuperamos el mensaje de la caja de texto de la interfaz.
-                String Mensaje = AreaEnviar.getText();
+                String mensaje = areaEnviar.getText();
                 // Solicitamos el envío del mensaje.
-                InstanciaEnviaUDP.Envia(Mensaje, Mensaje.length(), HostDestino.getText(), PuertoDestino);
+                instanciaEnviaUDP.Envia(mensaje, mensaje.length(), hostDestino.getText(), puertoDestino);
                 // Vaciamos la caja de texto para que el usuario pueda especificar
                 // un nuevo mensaje.
-                AreaEnviar.setText("");
+                areaEnviar.setText("");
                 // Si la longitud del mensaje especificado por el usuario es cero
                 // finalizamos la ejecución del programa.
-                if (Mensaje.length() == 0) {
+                if (mensaje.length() == 0) {
                     // Al mandar un mensaje vacio se abandona el programa
                     System.exit(0);
                 }
@@ -167,10 +167,10 @@ public class Talk {
             // uno con longitud cero.
             do {
                 // Escuchamos a la espera de la recepción de un nuevo mensajes.
-                MensajeRecibido = InstanciaRecibeUDP.Recibe(PuertoOrigen, TamanioMaximoMensaje);
+                mensajeRecibido = instanciaRecibeUDP.Recibe(puertoOrigen, tamanioMaximoMensaje);
                 // Mostramos el mensaje en la interfaz.
-                AreaRecibir.setText(MensajeRecibido);
-            } while (MensajeRecibido.length() != 0);
+                areaRecibir.setText(mensajeRecibido);
+            } while (mensajeRecibido.length() != 0);
             // Salimos del sistema.
             System.exit(0);
         }

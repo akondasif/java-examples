@@ -26,14 +26,14 @@ import java.awt.event.*;
  */
 public class PruebaEnvia extends Object {
 
-    static final int TamanioMaximoMensaje = 20;
-    Frame Marco;
+    static final int tamanioMaximoMensaje = 20;
+    Frame marco;
     Panel panel;
-    Label EtiquetaMensaje;
-    TextField CampoMensaje;
-    TextField HostDestino;
-    TextField Puerto;
-    TEnviaUDP EnviaFrase;
+    Label etiquetaMensaje;
+    TextField campoMensaje;
+    TextField hostDestino;
+    TextField puerto;
+    TEnviaUDP enviaFrase;
 
     /**
      * Método principal que se encarga de lanzar el programa que envía los
@@ -42,7 +42,7 @@ public class PruebaEnvia extends Object {
      * @param args Argumentos del programa.
      */
     public static void main(String[] args) {
-        PruebaEnvia MiClaseEnvia = new PruebaEnvia();
+        PruebaEnvia miClaseEnvia = new PruebaEnvia();
     }
 
     /**
@@ -50,27 +50,27 @@ public class PruebaEnvia extends Object {
      */
     public PruebaEnvia() {
         // Creamos el frame de la aplicación.
-        Marco = new Frame("EnvioUDP");
+        marco = new Frame("EnvioUDP");
         panel = new Panel();
         // Creamos los componentes del formulario.
-        EtiquetaMensaje = new Label("Mensaje: ");
-        CampoMensaje = new TextField(TamanioMaximoMensaje);
-        HostDestino = new TextField("127.0.0.1", 15);
-        Puerto = new TextField("5000", 4);
+        etiquetaMensaje = new Label("Mensaje: ");
+        campoMensaje = new TextField(tamanioMaximoMensaje);
+        hostDestino = new TextField("127.0.0.1", 15);
+        puerto = new TextField("5000", 4);
         // Modificamos el marco y añadimos los elementos de la interfaz.
-        Marco.setSize(500, 200);
-        Marco.add(panel);
-        panel.add(HostDestino);
-        panel.add(Puerto);
-        panel.add(EtiquetaMensaje);
-        panel.add(CampoMensaje);
+        marco.setSize(500, 200);
+        marco.add(panel);
+        panel.add(hostDestino);
+        panel.add(puerto);
+        panel.add(etiquetaMensaje);
+        panel.add(campoMensaje);
         // Mostramos la interfaz.
-        Marco.show();
+        marco.show();
         // Instanciamos la clase auxiliar que se encargará de la gestión de las
         // comunicaciones.
-        EnviaFrase = new TEnviaUDP();
+        enviaFrase = new TEnviaUDP();
         // Asociamos los actionlistener.
-        CampoMensaje.addActionListener(new RespuestaAEnviar());
+        campoMensaje.addActionListener(new RespuestaAEnviar());
         panel.addMouseMotionListener(new MovimientoDelRaton());
     }
 
@@ -85,11 +85,12 @@ public class PruebaEnvia extends Object {
          */
         @Override
         public void actionPerformed(ActionEvent e) {
-            String Mensaje = CampoMensaje.getText();
-            EnviaFrase.Envia(Mensaje, Mensaje.length(), HostDestino.getText(), Integer.parseInt(Puerto.getText()));
-            System.out.println("Datagrama enviado: " + Mensaje + " , " + Mensaje.length() + " Caracteres");
-            if (Mensaje.length() == 0) {
-                System.exit(1);   // Al mandar un mensaje vacio se abandona el programa
+            String mensaje = campoMensaje.getText();
+            enviaFrase.Envia(mensaje, mensaje.length(), hostDestino.getText(), Integer.parseInt(puerto.getText()));
+            System.out.println("Datagrama enviado: " + mensaje + " , " + mensaje.length() + " Caracteres");
+            if (mensaje.length() == 0) {
+                // Al mandar un mensaje vacio se abandona el programa
+                System.exit(1);
             }
         }
     }
@@ -105,10 +106,10 @@ public class PruebaEnvia extends Object {
          */
         @Override
         public void mouseMoved(MouseEvent e) {
-            String Mensaje = "*" + String.valueOf(e.getX()) + " " + String.valueOf(e.getY());
-            EnviaFrase.Envia(Mensaje, Mensaje.length(), HostDestino.getText(), Integer.parseInt(Puerto.getText()));
-            System.out.println("Datagrama enviado: " + Mensaje + " , " + Mensaje.length() + " Caracteres");
-            if (Mensaje.length() == 0) {
+            String mensaje = "*" + String.valueOf(e.getX()) + " " + String.valueOf(e.getY());
+            enviaFrase.Envia(mensaje, mensaje.length(), hostDestino.getText(), Integer.parseInt(puerto.getText()));
+            System.out.println("Datagrama enviado: " + mensaje + " , " + mensaje.length() + " Caracteres");
+            if (mensaje.length() == 0) {
                 System.exit(1);   // Al mandar un mensaje vacio se abandona el programa
             }
         } // mouseMoved

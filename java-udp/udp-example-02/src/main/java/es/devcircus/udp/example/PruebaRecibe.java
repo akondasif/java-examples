@@ -32,7 +32,7 @@ public class PruebaRecibe extends Object {
      * @param args Argumentos del programa.
      */
     public static void main(String[] args) {
-        PruebaRecibe MiClaseRecibe = new PruebaRecibe();
+        PruebaRecibe miClaseRecibe = new PruebaRecibe();
     }
 
     /**
@@ -40,45 +40,45 @@ public class PruebaRecibe extends Object {
      */
     public PruebaRecibe() {
         // Definimos el puerto de las comunicaciones y el tiempo máximo del mensaje.
-        final int Puerto = 5000;
-        final int TamanioMaximoMensaje = 20;
+        final int puerto = 5000;
+        final int tamanioMaximoMensaje = 20;
         // Variable en la que vamos a almacenar el mensaje recivido.
-        String MensajeRecibido;
+        String mensajeRecibido;
         // Instanciamos la clase auxiliar que se va a encargar de la gesetión de
         // las comunicaciones.
-        TRecibeUDP InstanciaRecibeUDP = new TRecibeUDP();
+        TRecibeUDP instanciaRecibeUDP = new TRecibeUDP();
         // Creamos el frame de la aplicación.
-        Frame Marco = new Frame("EnvioUDP");
+        Frame marco = new Frame("EnvioUDP");
         Panel panel = new Panel();
         // Creamos el componente donde vamos a mostrar el mensaje recivido.
-        Label EtiquetaMensaje = new Label("Mensaje:");
-        Label PosicionXY = new Label("");
+        Label etiquetaMensaje = new Label("Mensaje:");
+        Label posicionXY = new Label("");
         // Configuramos la interfaz y añadimos los elementos.
-        Marco.setSize(200, 80);
+        marco.setSize(200, 80);
         panel.setLayout(new GridLayout(2, 1));
-        Marco.add(panel);
-        panel.add(EtiquetaMensaje);
-        panel.add(PosicionXY);
+        marco.add(panel);
+        panel.add(etiquetaMensaje);
+        panel.add(posicionXY);
         // Mostramos la interfaz.
-        Marco.show();
+        marco.show();
         // Mientras que el mensaje no tenga una longitud igual a cero, seguimos
         // escuchando a la espera de recivir nuevos mensajes.
         do {
             // Esperamos la recepción del mensaje.
-            MensajeRecibido = InstanciaRecibeUDP.Recibe(Puerto, TamanioMaximoMensaje);
+            mensajeRecibido = instanciaRecibeUDP.Recibe(puerto, tamanioMaximoMensaje);
             try {
                 // Procesamos el mensaje y lo colocamos en la interfaz.
-                int i = MensajeRecibido.indexOf(" ");
-                if (i != -1 && MensajeRecibido.indexOf("*") == 0) {
-                    String X = MensajeRecibido.substring(1, i);
-                    String Y = MensajeRecibido.substring(i + 1, MensajeRecibido.length());
-                    PosicionXY.setText("(" + X + ", " + Y + ")");
+                int i = mensajeRecibido.indexOf(" ");
+                if (i != -1 && mensajeRecibido.indexOf("*") == 0) {
+                    String X = mensajeRecibido.substring(1, i);
+                    String Y = mensajeRecibido.substring(i + 1, mensajeRecibido.length());
+                    posicionXY.setText("(" + X + ", " + Y + ")");
                 } else {
-                    EtiquetaMensaje.setText("Mensaje: " + MensajeRecibido);
+                    etiquetaMensaje.setText("Mensaje: " + mensajeRecibido);
                 }
             } catch (Exception e) {
             }
-        } while (MensajeRecibido.length() != 0);
+        } while (mensajeRecibido.length() != 0);
         // Salimos del programa.
         System.exit(1);
     }

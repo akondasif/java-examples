@@ -32,25 +32,25 @@ public class TEnviaUDP extends Object {
      * eficiente ya que como podemos observar cada vez que enviarmos un mensaje
      * abrimos y cerramos el socket.
      *
-     * @param Mensaje Mensaje que queremos enviar vía UDP.
-     * @param TamanioMensaje Tamño máximo del mensaje a enviar.
-     * @param HostDestino Dirección IP del host de destino.
-     * @param Puerto Puesto en el que vamos a llevar a cabo la conexión.
+     * @param mensaje Mensaje que queremos enviar vía UDP.
+     * @param tamanioMensaje Tamño máximo del mensaje a enviar.
+     * @param hostDestino Dirección IP del host de destino.
+     * @param puerto Puesto en el que vamos a llevar a cabo la conexión.
      */
-    public void Envia(String Mensaje, int TamanioMensaje, String HostDestino, int Puerto) {
-        try {            
+    public void Envia(String mensaje, int tamanioMensaje, String hostDestino, int puerto) {
+        try {
             // Instanciamos el socket.
-            DatagramSocket MiSocket = new DatagramSocket();
+            DatagramSocket miSocket = new DatagramSocket();
             // Definimos el buffer con el tamaño máximo especificado.
-            byte[] buffer = new byte[TamanioMensaje];
-            DatagramPacket Paquete;
-            buffer = Mensaje.getBytes();
+            byte[] buffer = new byte[tamanioMensaje];
+            DatagramPacket paquete;
+            buffer = mensaje.getBytes();
             // Instanciamos el paquete a enviar.
-            Paquete = new DatagramPacket(buffer, Mensaje.length(), InetAddress.getByName(HostDestino), Puerto);
+            paquete = new DatagramPacket(buffer, mensaje.length(), InetAddress.getByName(hostDestino), puerto);
             // Enviamos el paquete.
-            MiSocket.send(Paquete);
+            miSocket.send(paquete);
             // Cerramos el socket.
-            MiSocket.close();
+            miSocket.close();
         } catch (Exception exc) {
             System.out.println("Error");
         }
