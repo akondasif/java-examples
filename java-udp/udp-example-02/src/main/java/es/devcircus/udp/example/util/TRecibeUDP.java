@@ -14,7 +14,7 @@
  * this program; see the file COPYING. If not, see
  * <http://www.gnu.org/licenses/>.
  */
-package es.devcircus.udp.example;
+package es.devcircus.udp.example.util;
 
 import java.net.*;
 
@@ -22,37 +22,39 @@ import java.net.*;
  *
  * @author Adrian Novegil <adrian.novegil@gmail.com>
  */
-public class TEnviaUDP extends Object {
+public class TRecibeUDP extends Object {
+    
+    DatagramSocket MiSocket;
+    DatagramPacket Paquete;
+    byte[] buffer;
 
     /**
-     * Método que encapsula la lógica de negocio para el envío de informacion
-     * via UDP.
+     * Método que encapsula la lógica de negocio para la recepción de
+     * informacion via UDP.
      *
      * Este método es para fines formativos y por tanto no es ni elegante ni
      * eficiente ya que como podemos observar cada vez que enviarmos un mensaje
      * abrimos y cerramos el socket.
      *
-     * @param Mensaje Mensaje que queremos enviar vía UDP.
-     * @param TamanioMensaje Tamño máximo del mensaje a enviar.
-     * @param HostDestino Dirección IP del host de destino.
-     * @param Puerto Puesto en el que vamos a llevar a cabo la conexión.
+     * @param Puerto Puerto en el que vamos a hacer la recepción.
+     * @param TamanioMaximoMensaje Tamaño máximo de mensaje.
+     * @return String que contiene la información recivida.
      */
-    public void Envia(String Mensaje, int TamanioMensaje, String HostDestino, int Puerto) {
+    public String Recibe(int Puerto, int TamanioMaximoMensaje) {
         try {
-            // Instanciamos el socket.
-            DatagramSocket MiSocket = new DatagramSocket();
-            // Definimos el buffer con el tamaño máximo especificado.
-            byte[] buffer = new byte[TamanioMensaje];
-            DatagramPacket Paquete;
-            buffer = Mensaje.getBytes();
-            // Instanciamos el paquete a enviar.
-            Paquete = new DatagramPacket(buffer, Mensaje.length(), InetAddress.getByName(HostDestino), Puerto);
-            // Enviamos el paquete.
-            MiSocket.send(Paquete);
+            // Abrimos el socket en el puerto definido.
+            MiSocket = new DatagramSocket(Puerto);
+            // Definimos el buffer donde vamos a leer el mensaje.
+            buffer = new byte[TamanioMaximoMensaje];
+            // Definimos el paquete que va a encapsular el mensaje recivido.
+            Paquete = new DatagramPacket(buffer, buffer.length);
+            // Solicitamos la recepción del mensaje.
+            MiSocket.receive(Paquete);
             // Cerramos el socket.
             MiSocket.close();
-        } catch (Exception exc) {
+        } catch (Exception e) {
             System.out.println("Error");
-        }
+        } //try
+        return new String(Paquete.getData()).substring(0, Paquete.getLength());
     }
 }
