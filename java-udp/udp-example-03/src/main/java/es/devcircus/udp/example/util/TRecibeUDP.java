@@ -24,9 +24,9 @@ import java.net.*;
  */
 public class TRecibeUDP extends Object {
 
-    DatagramSocket miSocket;
-    DatagramPacket paquete;
-    byte[] buffer;
+    private DatagramSocket miSocket;
+    private DatagramPacket paquete;
+    private byte[] buffer;
 
     /**
      * Método que encapsula la lógica de negocio para la recepción de

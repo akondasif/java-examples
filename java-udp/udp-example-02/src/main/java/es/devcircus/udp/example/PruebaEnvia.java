@@ -26,14 +26,14 @@ import java.awt.event.*;
  */
 public class PruebaEnvia extends Object {
 
-    static final int tamanioMaximoMensaje = 20;
-    Frame marco;
-    Panel panel;
-    Label etiquetaMensaje;
-    TextField campoMensaje;
-    TextField hostDestino;
-    TextField puerto;
-    TEnviaUDP enviaFrase;
+    private static final int TAMANIO_MAXIMO_MENSAJE = 20;
+    private final Frame marco;
+    private final Panel panel;
+    private final Label etiquetaMensaje;
+    private final TextField campoMensaje;
+    private final TextField hostDestino;
+    private final TextField puerto;
+    private final TEnviaUDP enviaFrase;
 
     /**
      * Método principal que se encarga de lanzar el programa que envía los
@@ -54,7 +54,7 @@ public class PruebaEnvia extends Object {
         panel = new Panel();
         // Creamos los componentes del formulario.
         etiquetaMensaje = new Label("Mensaje: ");
-        campoMensaje = new TextField(tamanioMaximoMensaje);
+        campoMensaje = new TextField(TAMANIO_MAXIMO_MENSAJE);
         hostDestino = new TextField("127.0.0.1", 15);
         puerto = new TextField("5000", 4);
         // Modificamos el marco y añadimos los elementos de la interfaz.

@@ -37,17 +37,17 @@ import java.awt.event.ActionListener;
  */
 public class Talk {
 
-    static final int tamanioMaximoMensaje = 90;
+    private static final int TAMANIO_MAXIMO_MENSAJE = 90;
 
-    TextArea areaRecibir;
-    TextArea areaEnviar;
-    TextField hostDestino;
-    Button botonEnviar;
-    String mensajeRecibido;
-    int puertoOrigen, puertoDestino;
+    private final TextArea areaRecibir;
+    private final TextArea areaEnviar;
+    private final TextField hostDestino;
+    private final Button botonEnviar;
+    private String mensajeRecibido;
+    private final int puertoOrigen, puertoDestino;
 
-    TRecibeUDP instanciaRecibeUDP;
-    TEnviaUDP instanciaEnviaUDP;
+    private final TRecibeUDP instanciaRecibeUDP;
+    private final TEnviaUDP instanciaEnviaUDP;
 
     /**
      *
@@ -167,7 +167,7 @@ public class Talk {
             // uno con longitud cero.
             do {
                 // Escuchamos a la espera de la recepción de un nuevo mensajes.
-                mensajeRecibido = instanciaRecibeUDP.Recibe(puertoOrigen, tamanioMaximoMensaje);
+                mensajeRecibido = instanciaRecibeUDP.Recibe(puertoOrigen, TAMANIO_MAXIMO_MENSAJE);
                 // Mostramos el mensaje en la interfaz.
                 areaRecibir.setText(mensajeRecibido);
             } while (mensajeRecibido.length() != 0);
