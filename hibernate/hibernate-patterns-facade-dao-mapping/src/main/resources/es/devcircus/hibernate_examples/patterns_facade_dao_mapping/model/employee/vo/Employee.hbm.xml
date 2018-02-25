@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="es.devcircus.hibernate_examples.hello_world_mapping.model">
+  <class name="es.devcircus.hibernate_examples.patterns_facade_dao_mapping.model.employee.vo.Employee" table="employee">
+    <id column="ID" name="id">
+      <generator class="native"/>
+    </id>
+    <property name="firstname"/>
+    <property column="lastname" name="lastname"/>
+    <property column="birth_date" name="birthDate" type="date"/>
+    <property column="cell_phone" name="cellphone"/>
+  </class>
+</hibernate-mapping>

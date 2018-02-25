@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="es.devcircus.hibernate_examples.relationship_one_to_one_mapping.model">
+ 
+    <class name="Employee" table="employee">
+        <id name="id" column="ID">
+            <generator class="native"/>
+        </id>
+        
+        <one-to-one name="employeeDetail" class="es.devcircus.hibernate_examples.relationship_one_to_one_mapping.model.EmployeeDetail"
+            cascade="save-update"></one-to-one>
+        
+        <property name="firstname" />
+        <property name="lastname" column="lastname"/>
+        <property name="birthDate" type="date" column="birth_date"/>
+        <property name="cellphone" column="cell_phone"/>
+    </class>
+ 
+</hibernate-mapping>

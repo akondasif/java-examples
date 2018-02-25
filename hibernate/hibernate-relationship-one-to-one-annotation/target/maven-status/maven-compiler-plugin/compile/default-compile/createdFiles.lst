@@ -1,0 +1,4 @@
+es/devcircus/hibernate_examples/relationship_one_to_one_annotation/Main.class
+es/devcircus/hibernate_examples/relationship_one_to_one_annotation/model/Employee.class
+es/devcircus/hibernate_examples/relationship_one_to_one_annotation/util/HibernateUtil.class
+es/devcircus/hibernate_examples/relationship_one_to_one_annotation/model/EmployeeDetail.class

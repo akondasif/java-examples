@@ -1,0 +1,52 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/hello-world-annotation/target/
+/hello-world-mapping/target/
+/inheritance-one-table-per-class/target/
+/inheritance-one-table-per-concrete-class/target/
+/inheritance-one-table-per-subclass/target/
+/relationship-many-to-many-annotation/target/
+/relationship-many-to-many-mapping/target/
+/relationship-one-to-many-annotation/target/
+/relationship-one-to-many-mapping/target/
+/relationship-one-to-one-annotation/target/
+/relationship-self-join-one-to-many/target/
+/relationship-one-to-one-mapping/target/
+/relationship-self-join-many-to-many/target/
+/relationship-one-to-many-mapping copia/target/
+/relationship-one-to-many-mapping copia 2/target/
+/relationship-one-to-many-mapping-set/target/
+/relationship-one-to-many-mapping-bag/target/
+/relationship-one-to-many-mapping-list/target/
+/relationship-one-to-many-mapping-array/target/
+/relationship-one-to-many-annotation copia/target/
+/relationship-one-to-many-annotation-list/target/
+/relationship-one-to-many-annotation-set/target/
+.DS_Store
+/hello-world-mapping copia/target/
+/patterns-dao-mapping/target/
+/patterns-dao-mapping copia/target/
+/patterns-facade-dao-mapping/target/
+/hibernate-hello-world-annotation/target/
+/hibernate-hello-world-mapping/target/
+/hibernate-inheritance-one-table-per-class/target/
+/hibernate-inheritance-one-table-per-concrete-class/target/
+/hibernate-inheritance-one-table-per-subclass/target/
+/hibernate-patterns-dao-mapping/target/
+/hibernate-patterns-facade-dao-mapping/target/
+/hibernate-relationship-many-to-many-annotation/target/
+/hibernate-relationship-many-to-many-mapping/target/
+/hibernate-relationship-one-to-many-annotation-list/target/
+/hibernate-relationship-one-to-many-annotation-set/target/
+/hibernate-relationship-one-to-many-mapping-array/target/
+/hibernate-relationship-one-to-many-mapping-bag/target/
+/hibernate-relationship-one-to-many-mapping-list/target/
+/hibernate-relationship-one-to-many-mapping-set/target/
+/hibernate-relationship-one-to-one-mapping/target/
+/hibernate-relationship-self-join-many-to-many/target/
+/hibernate-relationship-self-join-one-to-many/target/
+/hibernate-multiple-configuration-files/target/

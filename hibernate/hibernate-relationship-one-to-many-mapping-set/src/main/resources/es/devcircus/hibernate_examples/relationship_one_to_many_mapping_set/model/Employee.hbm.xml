@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="es.devcircus.hibernate_examples.relationship_one_to_many_mapping_set.model">
+ 
+    <class name="Employee" table="employee">
+        <id name="employeeId" column="employee_id">
+            <generator class="native"/>
+        </id>
+        
+        <property name="firstname" />
+        <property name="lastname" column="lastname"/>
+        <property name="birthDate" type="date" column="birth_date"/>
+        <property name="cellphone" column="cell_phone"/>
+        
+        <many-to-one name="department" class="es.devcircus.hibernate_examples.relationship_one_to_many_mapping_set.model.Department" fetch="select">
+            <column name="department_id" not-null="true" />
+        </many-to-one>
+    </class>
+ 
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="es.devcircus.hibernate_examples.relationship_one_to_one_mapping.model">
+ 
+    <class name="EmployeeDetail" table="employee_detail">
+ 
+        <id name="employeeId" type="java.lang.Long">
+            <column name="employee_id" />
+            <generator class="foreign">
+                <param name="property">employee</param>
+            </generator>
+        </id>
+        <one-to-one name="employee" class="es.devcircus.hibernate_examples.relationship_one_to_one_mapping.model.Employee"
+            constrained="true"></one-to-one>
+         
+        <property name="street" column="STREET"/>
+        <property name="city" column="CITY"/>
+        <property name="state" column="STATE"/>
+        <property name="country" column="COUNTRY"/>
+    </class>
+ 
+</hibernate-mapping>

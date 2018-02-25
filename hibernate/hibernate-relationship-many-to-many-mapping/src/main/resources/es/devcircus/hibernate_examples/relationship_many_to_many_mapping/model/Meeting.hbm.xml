@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+ 
+<hibernate-mapping package="es.devcircus.hibernate_examples.relationship_many_to_many_mapping.model">
+ 
+    <class name="Meeting" table="meeting">
+ 
+        <id name="meetingId" type="java.lang.Long"
+            column="meeting_id">
+            <generator class="native" />
+        </id>
+ 
+        <property name="subject" column="subject" />
+        <property name="meetingDate" type="date" column="meeting_date" />
+ 
+        <set name="employees" table="employee_meeting"
+             inverse="true" lazy="true" fetch="select">
+            <key column="employee_id" />
+            <many-to-many column="meeting_id" class="Meeting" />
+        </set>
+ 
+    </class>
+</hibernate-mapping>
