@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://cxf.apache.org/jaxrs
+         http://cxf.apache.org/schemas/jaxrs.xsd">
+
+    <!-- Definimos el servicio de prueba. -->
+    <jaxrs:server id="testService" address="/foobar">
+        <!-- Definimos el bean que asociamos como impelementacion del servicio. -->
+        <jaxrs:serviceBeans>
+            <bean class="es.devcircus.apache_cxf_examples.crud_example.services.FooBarService">
+            </bean>
+        </jaxrs:serviceBeans>
+
+        <jaxrs:providers>
+            <bean class="org.eclipse.persistence.jaxb.rs.MOXyJsonProvider"/>
+        </jaxrs:providers>
+    </jaxrs:server>
+    
+</beans>
