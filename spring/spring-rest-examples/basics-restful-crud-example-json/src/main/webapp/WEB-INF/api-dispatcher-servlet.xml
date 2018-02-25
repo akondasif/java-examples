@@ -1,0 +1,22 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.1.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd">
+    <!-- La etiqueta <mvc:annotation-driven/> permite usar anotaciones y hace 
+    una configuración por defecto de distintos elementos que iremos viendo, como 
+    la validación y conversión de datos. Está disponible a partir de la versión 
+    3.0 de Spring -->
+    <mvc:annotation-driven />
+    <!-- Esta etiqueta se encarga de decirle a Spring en que packages debe buscar 
+    clases anotadas para su registro . En nuestro caso en 
+    “path.a.nuestro.directorio.de.controllers” .Realizada esta operación creamos 
+    una clase PersonaController dentro del package. -->
+    <context:component-scan base-package="es.devcircus.spring_examples.spring_rest_examples.restful_mvc_crud_example_json.controller" />
+</beans>

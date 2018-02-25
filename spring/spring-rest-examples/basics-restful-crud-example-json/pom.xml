@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>es.devcircus</groupId>
+        <artifactId>spring-mvc-rest-examples</artifactId>
+        <version>0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <groupId>es.devcircus</groupId>
+    <artifactId>basics-restful-crud-example-json</artifactId>
+    <packaging>war</packaging>
+    <version>0.1-SNAPSHOT</version>
+    <name>Spring MVC REST - RESTful CRUD Example - JSON</name>
+
+    <!-- Properties -->
+    <properties>
+        <jackson-mapper-asl.version>1.9.9</jackson-mapper-asl.version>
+        <jaxb-api.version>2.2.7</jaxb-api.version>        
+        <spring-version>3.1.0.RELEASE</spring-version>
+    </properties>
+    
+    <!-- Dependencias -->
+    <dependencies>               
+        <!-- Spring 3 dependencies -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <!-- A partir de Spring 2.5 se permite el uso de un sistema de anotaciones 
+        que simplifica la forma de trabajar. Para usar este sistema deberemos 
+        en primer lugar añadir una nueva dependencia a nuestro pom.xml que es
+        spring-context. 
+        Esta dependencia nos permitirá modidificar el fichero application-context.xml 
+        y añadir una etiqueta
+
+        <context:component-scan base-package="path.a.nuestro.directorio.de.controllers"/>
+        
+        Esta etiqueta se encarga de decirle a Spring en que packages debe buscar 
+        clases anotadas para su registro . En nuestro caso en 
+        “path.a.nuestro.directorio.de.controllers” .Realizada esta operación 
+        creamos una clase PersonaController dentro del package.
+        -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring-version}</version>
+        </dependency>
+        
+        <!-- Jackson dependency -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>${jackson-mapper-asl.version}</version>
+        </dependency>
+        
+        <!-- JAXB dependency -->
+        <dependency>
+            <groupId>javax.xml.bind</groupId>
+            <artifactId>jaxb-api</artifactId>
+            <version>${jaxb-api.version}</version>
+        </dependency>
+    </dependencies>
+    
+</project>

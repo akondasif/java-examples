@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+          
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+        <groupId>es.devcircus</groupId>
+        <artifactId>spring-examples</artifactId>
+        <version>0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath>
+    </parent>
+
+    <!-- The basics -->
+    <groupId>es.devcircus</groupId>
+    <artifactId>spring-mvc-examples</artifactId>
+    <version>0.1-SNAPSHOT</version>    
+    <packaging>pom</packaging>
+    <name>Spring MVC Examples</name>
+    
+    <modules>
+        <module>spring-mvc-hello-world</module>
+        <module>spring-mvc-basic-form</module>
+        <module>spring-mvc-intro-tiles</module>
+        <module>spring-mvc-i18n-tiles</module>
+        <module>spring-mvc-themes</module>
+        <module>spring-mvc-hibernate</module>
+    </modules>
+    
+    <properties>
+    </properties>
+    
+    <!-- Build Settings -->
+    <build>
+        <plugins>            
+        </plugins>
+    </build>
+    
+</project>

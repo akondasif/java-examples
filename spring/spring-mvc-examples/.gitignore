@@ -1,0 +1,22 @@
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+/springmvc-hello-world/target/
+/springmvc-hello-world/src/main/webapp/WEB-INF/glassfish-web.xml
+/springmvc-hello-world copia/target/
+/springmvc-basic-form/target/
+/springmvc-intro-tiles/src/main/webapp/WEB-INF/glassfish-web.xml
+/springmvc-intro-tiles copia/target/
+/springmvc-i18n-tiles/target/
+/springmvc-hibernate/target/
+/springmvc-themes/target/
+/springmvc-hibernate/nb-configuration.xml
+/spring-mvc-basic-form/target/
+/spring-mvc-hello-world/target/
+/spring-mvc-hibernate/target/
+/spring-mvc-i18n-tiles/target/
+/spring-mvc-intro-tiles/target/
+/spring-mvc-themes/target/
