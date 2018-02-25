@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:security="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+
+    <!--
+        Enable security, let the casAuthenticationEntryPoint handle all intercepted urls.
+        The CAS_FILTER needs to be in the right position within the filter chain.
+    -->
+    <security:http entry-point-ref="casAuthenticationEntryPoint" auto-config="true">
+        <security:intercept-url pattern="/**" access="ROLE_USER"></security:intercept-url>
+        <security:custom-filter position="CAS_FILTER" ref="casAuthenticationFilter"></security:custom-filter>
+        <!-- Línea que se encarga del logout de la aplicación-->
+        <security:logout logout-success-url="https://cas.dev.pp.es/cas/logout" invalidate-session="true" logout-url="/logout.action" />
+    </security:http>
+
+
+    <!--
+        This section is used to configure CAS. The service is the
+        actual redirect that will be triggered after the CAS login sequence.
+    -->
+    <bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties">
+<!--        <property name="service" value="http://localhost:8080/spring-security-cas/j_spring_cas_security_check"></property>-->
+        <property name="service" value="http://permisos.dev.pp.es/acl/j_spring_cas_security_check" ></property>
+        <property name="sendRenew" value="false"/>
+    </bean>	
+
+    <!--
+        The CAS filter handles the redirect from the CAS server and starts the ticket validation.
+    -->
+    <bean id="casAuthenticationFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter">
+        <property name="authenticationManager" ref="authenticationManager"></property>
+    </bean>
+
+    <!--
+            The entryPoint intercepts all the CAS authentication requests.
+            It redirects to the CAS loginUrl for the CAS login page.
+    -->
+    <bean id="casAuthenticationEntryPoint" class="org.springframework.security.cas.web.CasAuthenticationEntryPoint">
+        <property name="loginUrl" value="https://cas.dev.pp.es/cas/login"></property>
+        <property name="serviceProperties" ref="serviceProperties"></property>
+    </bean>
+
+    <!-- 
+        Handles the CAS ticket processing.
+    -->
+    <bean id="userDetailService" class="es.itnoroeste.core.security.spring.CustomUserDetailsService"/>
+    
+    <bean id="casAuthenticationProvider" class="org.springframework.security.cas.authentication.CasAuthenticationProvider">
+        <property name="userDetailsService" ref="userDetailService"></property>
+        <property name="serviceProperties" ref="serviceProperties"></property>
+        <property name="ticketValidator">
+            <bean class="org.jasig.cas.client.validation.Cas20ServiceTicketValidator">
+                <constructor-arg index="0" value="https://cas.dev.pp.es/cas"></constructor-arg>
+            </bean>
+        </property>
+        <property name="key" value="cas"></property>
+    </bean>
+
+    <!--
+        Required for the casProcessingFilter, so define it explicitly set and
+        specify an Id Even though the authenticationManager is created by
+        default when namespace based config is used.
+    -->
+    <security:authentication-manager alias="authenticationManager">
+        <security:authentication-provider ref="casAuthenticationProvider"></security:authentication-provider>
+    </security:authentication-manager>
+    
+    <!-- 
+        The users available for this application.
+  
+    <security:user-service id="userService">
+        <security:user name="adrian.novegil" password="user" authorities="ROLE_USER"></security:user>
+        <security:user name="paula.toro" password="user" authorities="ROLE_USER"></security:user>
+        <security:user name="xoan.valledor" password="user" authorities="ROLE_USER"></security:user>
+        <security:user name="jose.santalla" password="user" authorities="ROLE_USER"></security:user>
+    </security:user-service>  -->
+</beans>

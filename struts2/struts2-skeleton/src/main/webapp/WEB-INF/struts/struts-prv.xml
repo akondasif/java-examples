@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="prv" namespace="/" extends="permisos-default">
+
+        <!-- =============================================================== -->
+        <!--  DashBoard                                                      -->
+        <!-- =============================================================== -->
+        
+        <action name="PrvDashBoard" class="es.itnoroeste.controller.actions.prv.DashBoardActionHandler">
+            <result name="success" type="tiles">.PrvDashBoard</result>            
+        </action>
+        
+        <!-- =============================================================== -->
+        <!--  Account Settings                                               -->
+        <!-- =============================================================== -->
+        
+        <action name="Security" class="es.itnoroeste.controller.actions.prv.accountsettings.SecurityActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.Security</result>            
+        </action>   
+        
+        
+        <action name="SecurityEdit" method="view" class="es.itnoroeste.controller.actions.prv.accountsettings.SecurityActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.SecurityEdit</result>           
+        </action>
+        
+        <action name="SecurityUpdate" method="edit" class="es.itnoroeste.controller.actions.prv.accountsettings.SecurityActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">Security</param>
+                <param name="id">${current.id}</param>
+            </result>                       
+            <result name="input" type="tiles">.SecurityEdit</result>                    
+        </action>
+        
+        
+        
+        <!-- =============================================================== -->
+        <!--  Activity                                                       -->
+        <!-- =============================================================== -->
+        
+        <action name="ActivityResume" method="list" class="es.itnoroeste.controller.actions.prv.activity.ActivityResumeActionHandler">            
+            <result name="success" type="tiles">.ActivityResume</result>
+        </action>
+        
+        <action name="ActivityList" method="list" class="es.itnoroeste.controller.actions.prv.activity.ActivityListActionHandler">            
+            <result name="success" type="tiles">.ActivityList</result>
+        </action>
+       
+        <action name="ActivityDelete" method="delete" class="es.itnoroeste.controller.actions.prv.activity.ActivityListActionHandler">
+            <result name="success" type="redirectAction">ActivityList</result>
+        </action>
+       
+        <action name="ActivityView" method="view" class="es.itnoroeste.controller.actions.prv.activity.ActivityActionHandler">
+            <result name="success" type="tiles">.ActivityView</result>
+        </action>
+       
+        <action name="ActivityEdit" method="view" class="es.itnoroeste.controller.actions.prv.activity.ActivityActionHandler">
+            <result name="success" type="tiles">.ActivityEdit</result>
+        </action>
+        
+        <action name="ActivityUpdate" method="edit" class="es.itnoroeste.controller.actions.prv.activity.ActivityActionHandler">
+            <result name="success" type="redirectAction">ActivityList</result>
+            <result name="input" type="tiles">.ActivityEdit</result>
+        </action>
+       
+        <action name="ActivityCreate" method="create" class="es.itnoroeste.controller.actions.prv.activity.ActivityActionHandler">
+            <result name="success" type="tiles">.ActivityCreate</result>
+        </action>   
+        
+        <!-- =============================================================== -->
+        <!--  Mail box                                                       -->
+        <!-- =============================================================== -->
+        
+        <action name="MailBoxList" method="list" class="es.itnoroeste.controller.actions.prv.mailbox.MailBoxListActionHandler">            
+            <result name="success" type="tiles">.MailBox</result>
+        </action>
+       
+        <action name="MailDelete" method="delete" class="es.itnoroeste.controller.actions.prv.mailbox.MailBoxListActionHandler">
+            <result name="success" type="redirectAction">MailList</result>
+        </action>
+       
+        <action name="MailView" method="view" class="es.itnoroeste.controller.actions.prv.mailbox.MailBoxActionHandler">
+            <result name="success" type="tiles">.MailView</result>
+        </action>
+       
+        <action name="MailEdit" method="view" class="es.itnoroeste.controller.actions.prv.mailbox.MailBoxActionHandler">
+            <result name="success" type="tiles">.MailEdit</result>
+        </action>
+        
+        <action name="MailUpdate" method="edit" class="es.itnoroeste.controller.actions.prv.mailbox.MailBoxActionHandler">
+            <result name="success" type="redirectAction">MailBoxList</result>
+            <result name="input" type="tiles">.MailEdit</result>
+        </action>
+       
+        <action name="MailCreate" method="create" class="es.itnoroeste.controller.actions.prv.mailbox.MailBoxActionHandler">
+            <result name="success" type="tiles">.MailCreate</result>
+        </action>   
+        
+        <!-- =============================================================== -->
+        <!--  Messages                                                       -->
+        <!-- =============================================================== -->
+        
+        <action name="MessagesList" method="list" class="es.itnoroeste.controller.actions.prv.messages.MessagesListActionHandler">            
+            <result name="success" type="tiles">.MessagesList</result>
+        </action>
+       
+        <action name="MessagesDelete" method="delete" class="es.itnoroeste.controller.actions.prv.messages.MessagesListActionHandler">
+            <result name="success" type="redirectAction">MessagesList</result>
+        </action>
+       
+        <action name="MessagesView" method="view" class="es.itnoroeste.controller.actions.prv.messages.MessagesActionHandler">
+            <result name="success" type="tiles">.MessagesView</result>
+        </action>
+       
+        <action name="MessagesEdit" method="view" class="es.itnoroeste.controller.actions.prv.messages.MessagesActionHandler">
+            <result name="success" type="tiles">.MessagesEdit</result>
+        </action>
+        
+        <action name="MessagesUpdate" method="edit" class="es.itnoroeste.controller.actions.prv.messages.MessagesActionHandler">
+            <result name="success" type="redirectAction">MessagesList</result>
+            <result name="input" type="tiles">.MessagesEdit</result>
+        </action>
+       
+        <action name="MessagesCreate" method="create" class="es.itnoroeste.controller.actions.prv.messages.MessagesActionHandler">
+            <result name="success" type="tiles">.MessagesCreate</result>
+        </action>   
+        
+        <!-- =============================================================== -->
+        <!--  Profile                                                        -->
+        <!-- =============================================================== -->
+        
+        <action name="About" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.About</result>            
+        </action>        
+          
+        <action name="AboutEdit" method="view" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.AboutEdit</result>
+        </action>
+        
+        <action name="AboutUpdate" method="edit" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="fileUpload">
+                <param name="allowedTypes">image/png,image/gif,image/jpeg,image/jpg</param>
+                <param name="maximumSize">1024*1024</param>
+            </interceptor-ref> 
+            <interceptor-ref name="defaultStack" />  
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+            </result>                       
+            <result name="input" type="tiles">.AboutEdit</result> 
+        </action>
+        
+        <action name="AboutMarcarComoPrincipalTelefono" method="checkTelefono" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>     
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>      
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>  
+        
+        <action name="AboutMarcarComoPrincipalEmail" method="checkEmail" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>    
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param> 
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+           
+        <action name="AboutAddEmail" method="addEmail" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>      
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>      
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.About</result>
+        </action> 
+        
+        <action name="AboutMarcarComoPrincipalAddress" method="checkAddress" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>          
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>       
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>  
+         
+        <action name="AddAddressProfile" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <result name="success" type="tiles">.AddAddressProfile</result>
+        </action> 
+        
+        
+        
+        <action name="AboutAddTelefono" method="addTelefono" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>         
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>  
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.About
+          
+            </result>
+        </action> 
+        
+        <action name="AboutAddAddress" method="addAddressProfile" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>       
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>       
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.AddAddressProfile</result>
+        </action>  
+        
+        
+        
+        
+        
+        <action name="AboutEliminarAddress" method="delAddress" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>        
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>     
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>  
+        
+        
+        
+        <action name="AboutDelTelefono" method="delTelefono" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>       
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>      
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+        
+        <action name="AboutDelEmail" method="delEmail" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">About</param>
+                <param name="id">${id}</param>  
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+        
+        
+        <!-- =============================================================== -->
+        <!--  Fin                                                            -->
+        <!-- =============================================================== -->
+        
+    </package>
+</struts>
+

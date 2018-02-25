@@ -1,0 +1,100 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.devMode" value="false" />
+ 
+    <package name="default" namespace="/" extends="permisos-default">
+
+
+<!--        <global-results>
+            <result name="usuarioNoIdentificado">Login.jsp</result>
+            <result name="login-success" type="tiles">.BaseConMenu</result>
+            <result name="zonaRestringida" type="tiles">.BaseConMenu</result>
+        </global-results>-->
+               
+<!--        <action name="index">
+            <result>Login.jsp</result>
+        </action>
+
+        <action name="menu">
+            <interceptor-ref name="basicStack"/>
+            <result>jspf/comunes/partes/menu.jsp</result>
+        </action>-->
+       
+        <!-- =============================================================== -->
+        <!--  Acciones de Error                                              -->
+        <!-- =============================================================== -->
+        
+        <action name="401" class="es.itnoroeste.controller.actions.Error401ActionHandler">
+            <result name="success" type="tiles" >.Public401</result>
+        </action>
+        
+        <action name="403" class="es.itnoroeste.controller.actions.Error403ActionHandler">
+            <result name="success" type="tiles" >.Public403</result>
+        </action>
+        
+        <action name="404" class="es.itnoroeste.controller.actions.Error404ActionHandler">
+            <result name="success" type="tiles" >.Public404</result>
+        </action>
+        
+        <action name="500" class="es.itnoroeste.controller.actions.Error500ActionHandler">
+            <result name="success" type="tiles" >.Public500</result>
+        </action>
+       
+        <!-- =============================================================== -->
+        <!--  Enlaces footer                                                 -->
+        <!-- =============================================================== -->
+        
+        <action name="Accessibility" class="es.itnoroeste.controller.actions.AccessibilityActionHandler">
+            <result name="success" type="tiles" >.Accessibility</result>
+        </action>
+        
+        <action name="Contact" class="es.itnoroeste.controller.actions.ContactActionHandler">
+            <result name="success" type="tiles" >.Contact</result>
+        </action>
+        
+        <action name="LegalNotice" class="es.itnoroeste.controller.actions.LegalNoticeActionHandler">
+            <result name="success" type="tiles" >.LegalNotice</result>
+        </action>
+        
+        <action name="Privacy" class="es.itnoroeste.controller.actions.PrivacyActionHandler">
+            <result name="success" type="tiles" >.Privacy</result>
+        </action>
+       
+        <!-- =============================================================== -->
+        <!--  Accion denegar acceso                                          -->
+        <!-- =============================================================== -->
+       
+        <action name="AccessDenied" class="es.itnoroeste.controller.actions.AccessDeniedActionHandler">
+            <result name="success" type="tiles" >.AccessDenied</result>
+        </action>
+        
+        <action name="NoAccessApp" class="es.itnoroeste.controller.actions.NoAccessAppActionHandler">
+            <result name="success" type="tiles" >.NoAccessApp</result>
+        </action>
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Login                                                -->
+        <!-- =============================================================== -->
+               
+        <action name="Login" class="es.itnoroeste.controller.actions.LoginActionHandler" method="login">
+            <result name="success" type="tiles">.AdminDashBoard</result>
+            <result name="input" type="tiles">.Login</result>            
+        </action>
+       
+        <!-- =============================================================== -->
+        <!--  Accion de Index                                                -->
+        <!-- =============================================================== -->
+       
+        <action name="Index" class="es.itnoroeste.controller.actions.IndexActionHandler" method="index">
+            <!--            <result name="success" type="tiles">.AdminDashBoard</result>-->
+            <result type="redirect">UsuarioList</result>     
+        </action>
+      
+    </package>
+
+</struts>

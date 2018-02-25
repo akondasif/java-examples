@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="ajax" namespace="/" extends="json-default">
+        
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+
+        <action name="ajaxModuleList" method="modulosAjax" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        <action name="ajaxRolList" method="rolesAjax" class="es.itnoroeste.controller.actions.admin.usuarios.RolListActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+         <action name="ajaxActionList" method="accionesAjax" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+      <action name="ajaxModuleCodeList" method="modulosCodeAjax" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+         <action name="ajaxActionCodeList" method="accionesCodeAjax" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+        
+        <action name="ajaxActionPopup" method="recuperarActionAjax" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+        <action name="ajaxModulePopup" method="recuperarModuleAjax" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+        
+          <action name="ajaxUserPopup" method="recuperarUserAjax" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+          <action name="ajaxRolPopup" method="recuperarRolAjax" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+        <action name="ajaxUserauditoryPopup" method="recuperarUserauditoryAjax" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        <action name="ajaxAuditoryPopup" method="recuperarAuditoryAjax" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+          <action name="ajaxSedePopup" method="recuperarSedeAjax" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+  
+          <action name="ajaxSedeExtPopup" method="recuperarSedeExtAjax" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+        
+          <action name="ajaxDepartamentoPopup" method="recuperarDepartamentoAjax" class="es.itnoroeste.controller.actions.prv.profile.AboutActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+        
+        <action name="ajaxProfileImage" class="es.itnoroeste.controller.actions.prv.profile.ImageActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+         <action name="ajaxProvinciaList" method="provinciasAjax" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromScratchActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        <action name="ajaxIslaList" method="islasAjax" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromScratchActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        <action name="ajaxLocalidadList" method="localidadesAjax" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromScratchActionHandler">
+            <result name="success" type="json" />
+            <result name="input" type="json" />
+            <result name="error" type="json" />
+        </action>
+        
+    </package>
+</struts>
+

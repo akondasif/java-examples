@@ -1,0 +1,1304 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="admin" namespace="/" extends="permisos-default">
+                       
+        
+        <!-- =============================================================== -->
+        <!--  DashBoard                                                      -->
+        <!-- =============================================================== -->        
+
+        <action name="AdminDashBoard" class="es.itnoroeste.controller.actions.admin.DashBoardActionHandler">
+            <result name="success" type="tiles">.AdminDashBoard</result>            
+        </action>        
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Usuario                                              -->
+        <!-- =============================================================== -->
+       
+        <action name="UsuarioFind" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <result name="success" type="tiles">.UsuarioList</result>
+        </action>
+       
+        <action name="UsuarioList" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.UsuarioList</result>
+        </action>
+       
+        <action name="Usuario" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <result name="success" type="tiles">.Usuario</result>
+        </action>
+        
+        <action name="UsuarioCrea" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <result name="success" type="tiles">.UsuarioCreate</result>
+        </action>
+             
+        <action name="UsuarioDelete" method="delete" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+         
+            <result name="success" type="redirectAction">UsuarioList</result>
+            <result name="input" type="redirectAction">UsuarioList</result>
+        </action>
+       
+        <action name="UsuarioView" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.UsuarioView</result>    
+            <result name="input" type="redirectAction">UsuarioList</result>
+        </action>
+       
+        <action name="UsuarioEdit" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">AUTOMATIC</param>
+            </interceptor-ref>
+            <param name="actionName">edit</param>
+            <result name="success" type="tiles">.UsuarioEdit</result>
+            <result name="input" type="redirectAction">UsuarioList</result>
+        </action>
+        
+        <action name="UsuarioUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+            </result>                       
+            <result name="input" type="tiles">.UsuarioEdit</result> 
+        </action>
+       
+        <action name="UsuarioPermisos" method="recuperarPermisos" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">     
+            <result name="success" type="tiles">.PermisosTab</result>
+            <result name="input" type="tiles">.PermisosTab</result>
+        </action>
+       
+        <action name="UsuarioPermisos2" method="recuperarPermisos" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">     
+            <result name="success" type="tiles">.PermisosTab2</result>
+            <result name="input" type="tiles">.PermisosTab2</result>
+        </action>
+       
+        <action name="PermisoDelete" method="permisoDelete" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${idUser}</param>  
+                <param name="tab">${tab}</param> 
+                <param name="idApp">${idApp}</param> 
+            </result>
+            <result name="input" type="redirectAction">UsuarioPermisos2</result>
+        </action>
+        
+        <action name="AumentaOrden" method="aumentaOrdenAclEntry" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${idUser}</param>  
+                <param name="tab">${tab}</param> 
+                <param name="idApp">${idApp}</param> 
+            </result>
+            <result name="input" type="redirectAction">UsuarioPermisos2</result>
+        </action>
+       
+        <action name="DisminuyeOrden" method="disminuyeOrdenAclEntry" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${idUser}</param>  
+                <param name="tab">${tab}</param> 
+                <param name="idApp">${idApp}</param> 
+            </result>
+            <result name="input" type="redirectAction">UsuarioPermisos2</result>
+        </action>
+       
+       
+        <action name="AddPermisos" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioAddPermisosActionHandler">
+            <result name="success" type="tiles">.AddPermisos</result>
+        </action> 
+         
+        <action name="ResumenPermisos" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioAddPermisosActionHandler">
+            <result name="success" type="tiles">.ResumenPermisos</result>
+        </action> 
+        
+        <action name="AddPermisosStep1" method="add" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioAddPermisosActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>  
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.UsuarioEdit</result>
+        </action>  
+     
+     
+        
+        
+       <!-- Wizar para la acreación de un nuevo usuario a partir de una persona
+       que ya exista en el sistema-->
+        <action name="UsuarioCreateFromPersonStep0" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromPersonActionHandler">
+            <result name="success" type="tiles">.UsuarioCreateFromPersonStep00</result>
+        </action>   
+        <action name="UsuarioCreateFromPersonFind" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromPersonActionHandler">
+            <result name="success" type="tiles">.UsuarioCreateFromPersonStep00</result>
+        </action>
+
+        <action name="UsuarioCreateFromPersonStep1" method="goToStep1" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromPersonActionHandler">
+            <result name="success" type="tiles">.UsuarioCreateFromPersonStep01</result>
+        </action>   
+        
+        <action name="UsuarioCreateFromPersonStep2" method="goToStep2" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromPersonActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success"  type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>
+            </result>
+            <result name="input" type="tiles">.UsuarioCreateFromPersonStep01</result>
+        </action> 
+       
+       <!-- Wizar para la creación de un nuevo usuario desde cero-->
+        <action name="UsuarioCreateFromScratchStep0" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromScratchActionHandler">
+            <result name="success" type="tiles">.UsuarioCreateFromScratchStep00</result>
+        </action>   
+        
+        <action name="UsuarioCreateFromScratchStep1" method="goToStep1" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromScratchActionHandler">
+            <result name="success" type="tiles">.UsuarioCreateFromScratchStep01</result>
+            <result name="input" type="tiles">.UsuarioCreateFromScratchStep00</result>
+        </action>   
+        
+         
+        <action name="UsuarioCreateFromScratchStep2" method="create" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioCreateFromScratchActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>
+            </result>
+            <result name="input" type="tiles">.UsuarioCreateFromScratchStep01</result>
+        </action>   
+       
+        <action name="UserRolAdd" method="add" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param> 
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+        
+        <action name="UserRolDel" method="del" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>    
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>   
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>      
+            
+        <action name="UsuarioActive" method="active" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+        
+            <result name="success" type="redirectAction">UsuarioList</result> 
+        </action>  
+        
+        <action name="UsuarioDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+       
+            <result name="success" type="redirectAction">UsuarioList</result>
+        </action>  
+               
+        <action name="UsuarioMarcarComoPrincipalTelefono" method="checkTelefono" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+      
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>    
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>  
+        
+        <action name="UsuarioMarcarComoPrincipalEmail" method="checkEmail" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+       
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param> 
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+        
+        <action name="UsuarioAddTelefono" method="addTelefono" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+    
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>  
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.UsuarioEdit</result>
+        </action>        
+                
+        <action name="UsuarioAddEmail" method="addEmail" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+       
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>     
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.UsuarioView</result>
+        </action>               
+        
+        <action name="UsuarioMarcarComoPrincipalAddress" method="checkAddress" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+          
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>         
+             
+            </result>
+        </action>  
+         
+        <action name="AddAddress" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <result name="success" type="tiles">.AddAddress</result>
+            <result name="input" type="tiles">.AddAddress</result>
+        </action> 
+        
+        <action name="UsuarioAddAddress" method="addAddress" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+         
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>               
+            </result>
+            <result name="input" type="tiles">.AddAddress</result>
+        </action>  
+        
+        <action name="UsuarioEliminarAddress" method="delAddress" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+   
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>                 
+            </result>
+        </action>  
+        
+        <action name="UsuarioDelTelefono" method="delTelefono" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>     
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+        
+        <action name="UsuarioDelEmail" method="delEmail" class="es.itnoroeste.controller.actions.admin.usuarios.UsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+        
+            <result name="success" type="redirectAction">
+                <param name="actionName">UsuarioEdit</param>
+                <param name="id">${id}</param>            
+                <param name="tab">${tab}</param>  
+            </result>
+        </action> 
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Group                                              -->
+        <!-- =============================================================== -->
+       
+        <action name="GroupCrea" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <result name="success" type="tiles">.GroupCreate</result>
+        </action>
+       
+        <action name="GroupFind" class="es.itnoroeste.controller.actions.admin.usuarios.GroupListActionHandler">
+            <result name="success" type="tiles">.GroupList</result>
+        </action>
+       
+        <action name="GroupList" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.GroupListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.GroupList</result>
+        </action>
+       
+        <action name="Group" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <result name="success" type="tiles">.Group</result>
+        </action>        
+        
+        <action name="GroupDelete" method="delete" class="es.itnoroeste.controller.actions.admin.usuarios.GroupListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+    
+            <result name="success" type="redirectAction">GroupList</result>
+            <result name="input" type="tiles">.GroupList</result>
+        </action>             
+       
+        <action name="GroupView" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.GroupView</result>
+            <result name="input" type="redirectAction">GroupList</result>
+        </action>
+       
+        <action name="GroupEdit" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">AUTOMATIC</param>
+            </interceptor-ref>
+            <param name="actionName">edit</param>
+            <result name="success" type="tiles">.GroupEdit</result>
+        </action>
+        
+        <action name="GroupUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupEdit</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+                  
+            </result>                       
+            <result name="input" type="tiles">.GroupEdit</result>
+        </action>
+       
+        <action name="GroupCreate" method="create" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>      
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupEdit</param>
+                <param name="id">${id}</param>             
+            </result>
+            <result name="input" type="tiles">.GroupCreate</result>
+        </action>        
+        
+             <!--Add usuario a Group -->
+        <action name="GroupAddUsuarioStep0" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.GroupAddUsuarioActionHandler">
+            <result name="success" type="tiles">.GroupAddUsuarioStep00</result>
+        </action>  
+        
+        <action name="GroupAddUsuarioFind" class="es.itnoroeste.controller.actions.admin.usuarios.GroupAddUsuarioActionHandler">
+            <result name="success" type="tiles">.GroupAddUsuarioStep00</result>
+        </action> 
+                
+        <action name="GroupAddUsuarioStep1" method="add" class="es.itnoroeste.controller.actions.admin.usuarios.GroupAddUsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupAddUsuarioFind</param>
+                <param name="idGroup">${idGroup}</param>      
+                <param name="tab">${tab}</param>  
+                <param name="filtroNIF">${filtroNIF}</param>  
+                <param name="filtronombre">${filtronombre}</param>  
+                <param name="filtroapellidos">${filtroapellidos}</param>  
+            </result>
+            <result name="input" type="tiles">.GroupAddUsuarioStep00</result>
+        </action>     
+        
+            
+        <action name="GroupAddListUsuarioStep1" method="addList" class="es.itnoroeste.controller.actions.admin.usuarios.GroupAddUsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupEdit</param>               
+                <param name="id">${current.id}</param>      
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.GroupAddUsuarioStep00</result>
+        </action> 
+        
+        <action name="GroupDelUser" method="del" class="es.itnoroeste.controller.actions.admin.usuarios.GroupActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupEdit</param>                       
+                <param name="id">${idGroup}</param>
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="redirectAction">
+                <param name="actionName">GroupEdit</param>  
+                <param name="id">${idGroup}</param>
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>     
+        
+        <action name="GroupActive" method="active" class="es.itnoroeste.controller.actions.admin.usuarios.GroupListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+    
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupList</param>                          
+            </result>
+        </action>  
+        
+        <action name="GroupDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.usuarios.GroupListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+      
+            <result name="success" type="redirectAction">
+                <param name="actionName">GroupList</param>              
+            </result>
+        </action>  
+      
+          <!-- =============================================================== -->
+        <!--  Accion de Rol                                              -->
+        <!-- =============================================================== -->
+       
+        <action name="RolCrea" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <result name="success" type="tiles">.RolCreate</result>
+        </action>
+       
+        <action name="RolFind" class="es.itnoroeste.controller.actions.admin.usuarios.RolListActionHandler">
+            <result name="success" type="tiles">.RolList</result>
+        </action>
+       
+        <action name="RolList" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.RolListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.RolList</result>
+        </action>
+       
+        <action name="Rol" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <result name="success" type="tiles">.Rol</result>
+        </action>
+       
+        <action name="RolDelete" method="delete" class="es.itnoroeste.controller.actions.admin.usuarios.RolListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>          
+            </interceptor-ref>
+          
+            <result name="success" type="redirectAction">RolList</result>
+            <result name="input" type="tiles">.RolList</result>
+        </action>
+       
+        <action name="RolView" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">      
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.RolView</result>
+            <result name="input" type="redirectAction">RolList</result> 
+        </action>
+       
+        <action name="RolEdit" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">AUTOMATIC</param>
+            </interceptor-ref>
+            <param name="actionName">edit</param>
+            <result name="success" type="tiles">.RolEdit</result>
+        </action>
+        
+        <action name="RolUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+            </result>                       
+            <result name="input" type="tiles">.RolEdit</result>
+        </action>
+       
+        <action name="RolCreate" method="create" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>      
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${id}</param>     
+            </result>
+            <result name="input" type="tiles">.RolCreate</result>      
+        </action>          
+         
+              <!--Add usuario a Group -->
+        <action name="RolAddUsuarioStep0" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.RolAddUsuarioActionHandler">
+            <result name="success" type="tiles">.RolAddUsuarioStep00</result>
+        </action>       
+        
+        <action name="RolAddUsuarioFind" class="es.itnoroeste.controller.actions.admin.usuarios.RolAddUsuarioActionHandler">
+            <result name="success" type="tiles">.RolAddUsuarioStep00</result>
+        </action> 
+        
+        <action name="RolAddUsuarioStep1" method="add" class="es.itnoroeste.controller.actions.admin.usuarios.RolAddUsuarioActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${idRol}</param>  
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.RolAddUsuarioStep00</result>
+        </action>  
+      
+        <action name="RolAdd" method="add" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${idRol}</param> 
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.RolAddUsuarioStep00</result>
+        </action>  
+                  
+        <action name="RolDelUser" method="del" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">     
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${idRol}</param>   
+                <param name="tab">${tab}</param>  
+            </result>
+        </action>   
+           
+           
+        <action name="RolActive" method="active" class="es.itnoroeste.controller.actions.admin.usuarios.RolListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+       
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolList</param>                          
+            </result>
+        </action>  
+        
+        <action name="RolDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.usuarios.RolListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+         
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolList</param>              
+            </result>
+        </action>  
+        
+        <action name="AddPermisosRol" class="es.itnoroeste.controller.actions.admin.usuarios.RolAddPermisosActionHandler">
+            <result name="success" type="tiles">.AddPermisosRol</result>
+        </action> 
+         
+        <action name="AddPermisosRolStep1" method="add" class="es.itnoroeste.controller.actions.admin.usuarios.RolAddPermisosActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${id}</param>  
+                <param name="tab">${tab}</param>  
+            </result>
+            <result name="input" type="tiles">.RolEdit</result>
+        </action>  
+        
+        <action name="PermisoRolDelete" method="permisoRolDelete" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${idRol}</param>  
+                <param name="tab">${tab}</param> 
+                
+            </result>
+            <result name="input" type="tiles">.RolEdit</result>
+        </action>
+        
+        <action name="AumentaOrdenRol" method="aumentaOrdenAclEntry" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${idRol}</param>  
+                <param name="tab">${tab}</param> 
+            
+            </result>
+            <result name="input" type="tiles">.RolEdit</result>
+        </action>
+       
+        <action name="DisminuyeOrdenRol" method="disminuyeOrdenAclEntry" class="es.itnoroeste.controller.actions.admin.usuarios.RolActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">RolEdit</param>
+                <param name="id">${idRol}</param>  
+                <param name="tab">${tab}</param> 
+              
+            </result>
+            <result name="input" type="tiles">.RolEdit</result>
+        </action>
+        
+        <action name="ResumenPermisosRol" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.RolAddPermisosActionHandler">
+            <result name="success" type="tiles">.ResumenPermisosRol</result>
+        </action> 
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Action                                               -->
+        <!-- =============================================================== -->
+            
+        <action name="Action" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionActionHandler">
+            <result name="success" type="tiles">.ActionCreate</result>
+        </action>
+       
+        <action name="ActionFind" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler">
+            <result name="success" type="tiles">.ActionList</result>
+        </action>
+       
+        <action name="ActionList" method="list" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.ActionList</result>
+        </action>
+        
+        <action name="ActionDelete" method="delete" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler"> 
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+      
+            <result name="success" type="redirectAction">ActionList</result>
+            <result name="input" type="tiles">.ActionList</result>
+        </action>
+       
+        <action name="ActionView" method="view" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.ActionView</result>
+            <result name="input" type="redirectAction">ActionList</result>
+        </action>
+       
+        <action name="ActionEdit" method="view" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">AUTOMATIC</param>
+            </interceptor-ref>
+            <param name="actionName">edit</param>
+            <result name="success" type="tiles">.ActionEdit</result>
+        </action>
+        
+        <action name="ActionUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">ActionEdit</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+            </result>                       
+            <result name="input" type="tiles">.ActionEdit</result>     
+        </action>
+        
+        <action name="ActionCreate" method="create" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>      
+            <result name="success" type="redirectAction">
+                <param name="actionName">ActionEdit</param>
+                <param name="id">${id}</param>     
+            </result>
+            <result name="input" type="tiles">.ActionCreate</result>            
+        </action>    
+       
+        <action name="ActionActive" method="active" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+        
+            <result name="success" type="redirectAction">ActionList</result>
+        </action>  
+       
+        <action name="ActionDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.aplicaciones.ActionListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+       
+            <result name="success" type="redirectAction">ActionList</result>
+        </action>  
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Module                                               -->
+        <!-- =============================================================== -->
+       
+        <action name="Module" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleActionHandler">
+            <result name="success" type="tiles">.ModuleCreate</result>
+        </action>
+              
+        <action name="ModuleFind" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleListActionHandler">
+            <result name="success" type="tiles">.ModuleList</result>
+        </action>
+       
+        <action name="ModuleList" method="list" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.ModuleList</result>
+        </action>
+       
+        <action name="ModuleDelete" method="delete" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleListActionHandler">      
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+          
+            <result name="success" type="redirectAction">ModuleList</result>
+            <result name="input" type="tiles">.ModuleList</result>
+        </action>
+       
+        <action name="ModuleView" method="view" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.ModuleView</result>
+            <result name="input" type="redirectAction">ModuleList</result>
+        </action>
+       
+        <action name="ModuleEdit" method="view" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">AUTOMATIC</param>
+            </interceptor-ref>
+            <param name="actionName">edit</param>
+            <result name="success" type="tiles">.ModuleEdit</result>
+        </action>
+        
+        <action name="ModuleUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">ModuleEdit</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+            </result>                       
+            <result name="input" type="tiles">.ModuleEdit</result>          
+        </action>
+       
+        <action name="ModuleCreate" method="create" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>      
+            <result name="success" type="redirectAction">
+                <param name="actionName">ModuleEdit</param>
+                <param name="id">${id}</param>     
+            </result>
+            <result name="input" type="tiles">.ModuleCreate</result>             
+        </action>           
+        
+        <action name="ModuleActive" method="active" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+      
+            <result name="success" type="redirectAction">ModuleList</result>
+        </action>  
+        
+        <action name="ModuleDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.aplicaciones.ModuleListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+     
+            <result name="success" type="redirectAction">ModuleList</result>
+        </action>  
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Application                                          -->
+        <!-- =============================================================== -->
+       
+        <action name="ApplicationFind" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">
+            <result name="success" type="tiles">.ApplicationList</result>
+        </action>
+       
+        <action name="ApplicationList" method="list" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.ApplicationList</result>
+        </action>
+       
+        <action name="Application" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationActionHandler">
+            <result name="success" type="tiles">.ApplicationCreate</result>
+        </action>
+       
+        <action name="ApplicationDelete" method="delete" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">           
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+   
+            <result name="success" type="redirectAction">ApplicationList</result>
+            <result name="input" type="tiles">.ApplicationList</result>
+        </action>
+       
+        <action name="ApplicationView" method="view" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.ApplicationView</result>
+            <result name="input" type="redirectAction">ApplicationList</result>
+        </action>
+       
+        <action name="ApplicationEdit" method="view" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">AUTOMATIC</param>
+            </interceptor-ref>
+            <param name="actionName">edit</param>
+            <result name="success" type="tiles">.ApplicationEdit</result>
+        </action>
+        
+        <action name="ApplicationUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">
+                <param name="actionName">ApplicationEdit</param>
+                <param name="id">${current.id}</param>
+                <param name="tab">${tab}</param>  
+            </result>                       
+            <result name="input" type="tiles">.ApplicationEdit</result>    
+        </action>
+       
+        <action name="ApplicationCreate" method="create" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>      
+            <result name="success" type="redirectAction">
+                <param name="actionName">ApplicationEdit</param>
+                <param name="id">${id}</param>     
+            </result>
+            <result name="input" type="tiles">.ApplicationCreate</result>              
+        </action>   
+        
+        <action name="ApplicationActive" method="active" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+        
+            <result name="success" type="redirectAction">ApplicationList</result>
+        </action>  
+        
+        <action name="ApplicationDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+
+            <result name="success" type="redirectAction">ApplicationList</result>
+        </action>  
+        
+        <action name="ApplicationActiveMaintenance" method="activeMaintenance" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+  
+            <result name="success" type="redirectAction">ApplicationList</result>
+        </action>  
+        
+        <action name="ApplicationDeactiveMaintenance" method="deactiveMaintenance" class="es.itnoroeste.controller.actions.admin.aplicaciones.ApplicationListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+  
+            <result name="success" type="redirectAction">ApplicationList</result>
+        </action>  
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Acl                                                  -->
+        <!-- =============================================================== -->
+       
+        <action name="AclFind" class="es.itnoroeste.controller.actions.admin.usuarios.AclListActionHandler">
+            <result name="success" type="tiles">.AclList</result>
+        </action>
+       
+        <action name="AclList" method="list" class="es.itnoroeste.controller.actions.admin.usuarios.AclListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">RETRIEVE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.AclList</result>
+        </action>
+       
+        <action name="AclDelete" method="delete" class="es.itnoroeste.controller.actions.admin.usuarios.AclListActionHandler">
+            <result name="success" type="redirectAction">AclList</result>
+        </action>
+       
+        <action name="AclView" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.AclActionHandler">
+            <result name="success" type="tiles">.AclView</result>
+        </action>
+       
+        <action name="AclEdit" method="view" class="es.itnoroeste.controller.actions.admin.usuarios.AclActionHandler">
+            <result name="success" type="tiles">.AclEdit</result>
+        </action>
+        
+        <action name="AclUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.usuarios.AclActionHandler">
+            <result name="success" type="redirectAction">AclList</result>
+            <result name="input" type="tiles">.AclEdit</result>
+        </action>
+       
+        <action name="AclCreate" method="create" class="es.itnoroeste.controller.actions.admin.usuarios.AclActionHandler">
+            <result name="success" type="tiles">.AclCreate</result>
+        </action>            
+        
+        <action name="AclActive" method="active" class="es.itnoroeste.controller.actions.admin.usuarios.AclListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+     
+            <result name="success" type="redirectAction">AclList</result>
+        </action>  
+        
+        <action name="AclDeactive" method="deactive" class="es.itnoroeste.controller.actions.admin.usuarios.AclListActionHandler">
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+           
+            <result name="success" type="redirectAction">AclList</result>
+        </action>  
+        
+        <!-- =============================================================== -->
+        <!--  Accion de Auditoria                                            -->
+        <!-- =============================================================== -->
+       
+        <action name="AuditoriaFind" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaListActionHandler">
+            <result name="success" type="tiles">.AuditoriaList</result>
+        </action>
+       
+        <action name="AuditoriaList" method="list" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaListActionHandler">
+            <result name="success" type="tiles">.AuditoriaList</result>
+        </action>
+       
+<!--        <action name="AuditoriaDelete" method="delete" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaListActionHandler">
+            <result name="success" type="redirectAction">AuditoriaList</result>
+        </action>-->
+       
+        <action name="AuditoriaView" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.AuditoriaView</result>
+            <result name="input" type="redirectAction">AuditoriaList</result>
+        </action>
+       
+<!--        <action name="AuditoriaEdit" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaActionHandler">
+            <result name="success" type="tiles">.AuditoriaEdit</result>
+        </action>
+        
+        <action name="AuditoriaUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaActionHandler">
+            <result name="success" type="redirectAction">AuditoriaList</result>
+            <result name="input" type="tiles">.AuditoriaEdit</result>
+        </action>
+       
+        <action name="AuditoriaCreate" method="create" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaActionHandler">
+            <result name="success" type="tiles">.AuditoriaCreate</result>
+        </action>         -->
+   
+        <!-- =============================================================== -->
+        <!--  Accion de Auditoria con Usuario                                -->
+        <!-- =============================================================== -->
+       
+        <action name="AuditoriaUsuarioFind" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioListActionHandler">
+            <result name="success" type="tiles">.AuditoriaUsuarioList</result>
+        </action>
+       
+        <action name="AuditoriaUsuarioList" method="list" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioListActionHandler">
+            <result name="success" type="tiles">.AuditoriaUsuarioList</result>
+        </action>
+       
+<!--        <action name="AuditoriaUsuarioDelete" method="delete" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioListActionHandler">
+            <result name="success" type="redirectAction">AuditoriaUsuarioList</result>
+        </action>-->
+       
+        <action name="AuditoriaUsuarioView" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.AuditoriaUsuarioView</result>
+            <result name="input" type="redirectAction">AuditoriaUsuarioList</result>
+
+        </action>
+       
+<!--        <action name="AuditoriaUsuarioEdit" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioActionHandler">
+            <result name="success" type="tiles">.AuditoriaUsuarioEdit</result>
+        </action>
+        
+        <action name="AuditoriaUsuarioUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioActionHandler">
+            <result name="success" type="redirectAction">AuditoriaUsuarioList</result>
+            <result name="input" type="tiles">.AuditoriaUsuarioEdit</result>
+        </action>
+       
+        <action name="AuditoriaUsuarioCreate" method="create" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaUsuarioActionHandler">
+            <result name="success" type="tiles">.AuditoriaUsuarioCreate</result>
+        </action>       -->
+   
+        <!-- =============================================================== -->
+        <!--  Accion de Auditoria Web                                        -->
+        <!-- =============================================================== -->
+       
+        <action name="AuditoriaWebFind" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebListActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebList</result>
+        </action>
+       
+        <action name="AuditoriaWebList" method="list" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebListActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebList</result>
+        </action>
+       
+<!--        <action name="AuditoriaWebDelete" method="delete" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebListActionHandler">
+            <result name="success" type="redirectAction">AuditoriaWebList</result>
+        </action>-->
+       
+        <action name="AuditoriaWebView" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.AuditoriaWebView</result>
+            <result name="input" type="redirectAction">AuditoriaWebList</result>
+        </action>
+       
+<!--        <action name="AuditoriaWebEdit" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebEdit</result>
+        </action>
+        
+        <action name="AuditoriaWebUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebActionHandler">
+            <result name="success" type="redirectAction">AuditoriaWebList</result>
+            <result name="input" type="tiles">.AuditoriaWebEdit</result>
+        </action>
+       
+        <action name="AuditoriaWebCreate" method="create" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebCreate</result>
+        </action>        -->
+   
+        <!-- =============================================================== -->
+        <!--  Accion de Auditoria Web con Usuario                            -->
+        <!-- =============================================================== -->
+       
+        <action name="AuditoriaWebUsuarioFind" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioListActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebUsuarioList</result>
+        </action>
+       
+        <action name="AuditoriaWebUsuarioList" method="list" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioListActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebUsuarioList</result>
+        </action>
+       
+<!--        <action name="AuditoriaWebUsuarioDelete" method="delete" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioListActionHandler">
+            <result name="success" type="redirectAction">.AuditoriaWebUsuarioList</result>
+        </action>-->
+       
+        <action name="AuditoriaWebUsuarioView" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioActionHandler">
+            <param name="actionName">view</param>
+            <interceptor-ref name="defaultStack" />
+            <interceptor-ref name="store">
+                <param name="operationMode">STORE</param>
+            </interceptor-ref>
+            <result name="success" type="tiles">.AuditoriaWebUsuarioView</result>
+            <result name="input" type="redirectAction">AuditoriaWebUsuarioList</result>
+        
+        </action>
+       
+<!--        <action name="AuditoriaWebUsuarioEdit" method="view" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebUsuarioEdit</result>
+        </action>
+        
+        <action name="AuditoriaWebUsuarioUpdate" method="edit" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioActionHandler">
+            <result name="success" type="redirectAction">AuditoriaWebUsuarioList</result>
+            <result name="input" type="tiles">.AuditoriaWebUsuarioEdit</result>
+        </action>
+       
+        <action name="AuditoriaWebUsuarioCreate" method="create" class="es.itnoroeste.controller.actions.admin.auditoria.AuditoriaWebUsuarioActionHandler">
+            <result name="success" type="tiles">.AuditoriaWebUsuarioCreate</result>
+        </action>-->
+                
+        <!-- =============================================================== -->
+        <!--  Estadisticas por accion                                        -->
+        <!-- =============================================================== -->
+       
+        <action name="EstadisticasPorAccionDashBoard" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorAccionActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorAccionDashBoard</result>            
+        </action>     
+          
+        <action name="EstadisticasAccionFind" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorAccionActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorAccionDashBoard</result>
+        </action>
+       
+        <action name="EstadisticasAccionList" method="list" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorAccionActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorAccionDashBoard</result>
+        </action>
+        <!-- =============================================================== -->
+        <!--  Estadisticas por modulo                                        -->
+        <!-- =============================================================== -->
+       
+        <action name="EstadisticasPorModuloDashBoard" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorModuloActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorModuloDashBoard</result>            
+        </action>
+        <action name="EstadisticasModuloFind" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorModuloActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorModuloDashBoard</result>
+        </action>
+       
+        <action name="EstadisticasModuloList" method="list" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorModuloActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorModuloDashBoard</result>
+        </action>
+        <!-- =============================================================== -->
+        <!--  Estadisticas por usuario                                       -->
+        <!-- =============================================================== -->
+       
+        <action name="EstadisticasPorUsuarioDashBoard" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorUsuarioActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorUsuarioDashBoard</result>            
+        </action>
+        <action name="EstadisticasUsuarioFind" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorUsuarioActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorUsuarioDashBoard</result>
+        </action>
+       
+        <action name="EstadisticasUsuarioList" method="list" class="es.itnoroeste.controller.actions.admin.estadisticas.EstadisticasPorUsuarioActionHandler">
+            <result name="success" type="tiles">.EstadisticasPorUsuarioDashBoard</result>
+        </action>
+            <!-- =============================================================== -->
+        <!--  Configuración                                       -->
+        <!-- =============================================================== -->
+       
+        <action name="Configuracion" class="es.itnoroeste.controller.actions.admin.configuracion.ConfiguracionActionHandler">
+            <result name="success" type="tiles">.Configuracion</result>            
+        </action>
+    </package>
+</struts>
+

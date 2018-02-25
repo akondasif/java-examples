@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <constant name="struts.devMode" value="true"/>
+
+    <package name="default" namespace="/" extends="struts-default">
+        <interceptors>
+            <interceptor-stack name="appDefault">
+                <interceptor-ref name="paramsPrepareParamsStack">
+                    <param name="exception.logEnabled">true</param>
+                    <param name="exception.logLevel">ERROR</param>
+                    <param name="params.excludeParams">dojo\..*,^struts\..*,^session\..*,^request\..*,^application\..*,^servlet(Request|Response)\..*,parameters\...*,submit</param>
+                </interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+		
+        <default-interceptor-ref name="appDefault" />        
+        
+        <default-action-ref name="index"/>
+		
+        <!-- =============================================================== -->
+        <!--  Accion de Index                                                -->
+        <!-- =============================================================== -->
+             
+        <action name="index" class="es.devcircus.struts2_examples.struts2_crud_example.controller.actions.EmployeeActionHandler" method="list">
+            <result name="success">/jsp/employees.jsp</result>
+            <interceptor-ref name="basicStack"/>
+        </action>
+        
+        <!-- =============================================================== -->
+        <!--  Accion de gestión de empleados                                 -->
+        <!-- =============================================================== -->
+             
+        <action name="*Employee" class="es.devcircus.struts2_examples.struts2_crud_example.controller.actions.EmployeeActionHandler" method="{1}">
+            <result name="success" type="redirectAction">index</result>
+            <result name="input">/jsp/employeeForm.jsp</result>
+        </action>
+    </package>
+</struts>

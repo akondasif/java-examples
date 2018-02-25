@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <!-- =================================================================== -->
+    <!--  Layout's                                                           -->
+    <!-- =================================================================== -->
+
+    <definition name=".BasePublic" template="/WEB-INF/jspf/layouts/public-layout.jsp">  
+    </definition>
+
+    <definition name=".BasePrivate" template="/WEB-INF/jspf/layouts/prv-layout.jsp">  
+    </definition>    
+    
+    <definition name=".BaseAdmin" template="/WEB-INF/jspf/layouts/admin-layout.jsp">  
+    </definition>    
+    
+    <definition name=".BaseLogin" template="/WEB-INF/jspf/layouts/login-layout.jsp">        
+    </definition>
+    
+    <definition name=".BaseAjax" template="/WEB-INF/jspf/layouts/ajax-layout.jsp">        
+    </definition>
+
+    <!-- =================================================================== -->
+    <!--  Public                                                             -->
+    <!-- =================================================================== -->
+
+    <definition name=".BasePublicWithUserInformation" extends=".BasePublic">    
+        <put-attribute name="userinformation" value="/WEB-INF/jspf/layouts/public-parts/userInformation.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jspf/layouts/public-parts/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jspf/layouts/public-parts/footer.jsp"/>
+        <put-attribute name="meta" value="/WEB-INF/jspf/layouts/public-parts/meta.jsp"/>
+    </definition>
+
+    <definition name=".BasePublicWithUserInformationAndMenu" extends=".BasePublic">
+        <put-attribute name="navbar" value="/WEB-INF/jspf/layouts/common-parts/navbar.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jspf/layouts/public-parts/header.jsp"/>
+        <put-attribute name="profile" value="/WEB-INF/jspf/layouts/common-parts/profile.jsp"/>
+        <put-attribute name="rightmenu" value="/WEB-INF/jspf/layouts/common-parts/rightmenu.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jspf/layouts/public-parts/footer.jsp"/>
+    </definition>
+    
+    <definition name=".BasePublicWithoutUserInformationAndMenu" extends=".BasePublic">  
+        <put-attribute name="navbar" value="/WEB-INF/jspf/layouts/common-parts/navbar.jsp"/>
+        <put-attribute name="header" value="/WEB-INF/jspf/layouts/public-parts/header.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jspf/layouts/public-parts/footer.jsp"/>
+    </definition>
+
+    <definition name=".BasePublicWithoutUserInformation" extends=".BasePublic">
+        <put-attribute name="header" value="/WEB-INF/jspf/layouts/public-parts/header.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/jspf/layouts/public-parts/menu.jsp"/>     
+        <put-attribute name="footer" value="/WEB-INF/jspf/layouts/public-parts/footer.jsp"/>
+        <put-attribute name="meta" value="/WEB-INF/jspf/layouts/public-parts/meta.jsp"/>
+    </definition>
+
+    <definition name=".PublicPopUp" extends=".BasePublic">        
+        <put-attribute name="header" value="/WEB-INF/jspf/layouts/public-parts/header.jsp"/>    
+        <put-attribute name="meta" value="/WEB-INF/jspf/layouts/public-parts/meta.jsp"/>
+    </definition>
+
+    <!-- =================================================================== -->
+    <!--  Prv                                                                -->
+    <!-- =================================================================== -->
+
+    <definition name="privateHeader" template="/WEB-INF/jspf/layouts/prv-parts/header.jsp">
+        <put-attribute name="activeItem" value=""/>
+    </definition>
+    
+    <definition name=".BasePrivateWithSideBarAndHeader" extends=".BasePrivate">
+        <put-attribute name="navbar" value="/WEB-INF/jspf/layouts/common-parts/navbar.jsp"/>
+        <put-attribute name="profile" value="/WEB-INF/jspf/layouts/common-parts/profile.jsp"/>
+        <put-attribute name="rightmenu" value="/WEB-INF/jspf/layouts/common-parts/rightmenu.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jspf/layouts/prv-parts/footer.jsp"/>
+    </definition>
+
+    <!-- =================================================================== -->
+    <!--  Admin                                                              -->
+    <!-- =================================================================== -->
+
+    <definition name="adminHeader" template="/WEB-INF/jspf/layouts/admin-parts/header.jsp">
+        <put-attribute name="activeItem" value=""/>
+    </definition>
+    
+    <definition name=".BaseAdminWithSideBarAndHeader" extends=".BaseAdmin">
+        <put-attribute name="navbar" value="/WEB-INF/jspf/layouts/common-parts/navbar.jsp"/>
+        <put-attribute name="profile" value="/WEB-INF/jspf/layouts/common-parts/profile.jsp"/>
+        <put-attribute name="rightmenu" value="/WEB-INF/jspf/layouts/common-parts/rightmenu.jsp"/>
+        <put-attribute name="footer" value="/WEB-INF/jspf/layouts/admin-parts/footer.jsp"/>
+    </definition>
+
+    <!-- =================================================================== -->
+    <!--  Login                                                              -->
+    <!-- =================================================================== -->
+    
+    <definition name=".Login" extends=".BaseLogin" >
+        <put-attribute name="body" value="/jsp/login.jsp" />
+    </definition>
+    
+    <!-- =================================================================== -->
+    <!--  Páginas Error                                                      -->
+    <!-- =================================================================== -->
+
+    <definition name=".Public401" extends=".BasePublicWithUserInformationAndMenu" >
+        <put-attribute name="body" value="/WEB-INF/jspf/error/401.jsp" />
+    </definition>
+    
+    <definition name=".Public403" extends=".BasePublicWithUserInformationAndMenu" >
+        <put-attribute name="body" value="/WEB-INF/jspf/error/403.jsp" />
+    </definition>
+    
+    <definition name=".Public404" extends=".BasePublicWithUserInformationAndMenu" >
+        <put-attribute name="body" value="/WEB-INF/jspf/error/404.jsp" />
+    </definition>
+    
+    <definition name=".Public500" extends=".BasePublicWithUserInformationAndMenu" >
+        <put-attribute name="body" value="/WEB-INF/jspf/error/500.jsp" />
+    </definition>       
+
+    <!-- =================================================================== -->
+    <!--  Seguridad                                                          -->
+    <!-- =================================================================== -->
+
+    <definition name=".AccessDenied" extends=".BasePublicWithUserInformationAndMenu" >
+        <put-attribute name="body" value="/jsp/public/accessDenied.jsp" />
+    </definition>
+    
+    <definition name=".NoAccessApp" extends=".BasePublicWithoutUserInformationAndMenu" >
+        <put-attribute name="body" value="/jsp/public/noAccessApp.jsp" />
+    </definition>
+
+    <!-- =================================================================== -->
+    <!--  Páginas comunes                                                    -->
+    <!-- =================================================================== -->
+
+    <definition name=".Index" extends=".BasePublicWithUserInformationAndMenu" >
+        <put-attribute name="slide" value="/WEB-INF/jspf/layouts/public-parts/slider.jsp"/>
+        <put-attribute name="body" value="/jsp/home.jsp" />
+    </definition>
+
+    <!-- =================================================================== -->
+    <!--  Páginas administración                                             -->
+    <!-- =================================================================== -->
+
+</tiles-definitions>

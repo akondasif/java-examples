@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <!-- =================================================================== -->
+    <!--  DashBoard                                                          -->
+    <!-- =================================================================== -->
+        
+    <definition name="dashboard.menu" extends="adminHeader">
+        <put-attribute name="activeItem" value="DASHBOARD"/>
+    </definition>
+    
+    <definition name="dashboard.tab" template="/jsp/prv/tabs.jsp">
+        <put-attribute name="activeTab" value="DASHBOARD"/>
+    </definition>
+    
+    <definition name=".AdminDashBoard" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="dashboard.menu"/>
+        <put-attribute name="tabs" value="dashboardprv.tab" />
+        <put-attribute name="body" value="/jsp/admin/admin.jsp" />
+    </definition>
+         
+    <!-- =================================================================== -->
+    <!--  Auditoria                                                          -->
+    <!-- =================================================================== -->
+    
+    <definition name="auditoria.menu" extends="adminHeader">
+        <put-attribute name="activeItem" value="AUDITORIA"/>
+    </definition>
+    
+    <definition name="auditoria.tab" template="/jsp/admin/auditoria/tabs.jsp">
+        <put-attribute name="activeTab" value="AUDITORIA"/>
+    </definition>
+    
+    <definition name=".AuditoriaList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoria.tab" />
+        <put-attribute name="body" value="/jsp/admin/auditoria/auditorialist.jsp" />
+    </definition>    
+    
+    <definition name="auditoria.view" template="/jsp/admin/auditoria/auditoria.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="true"/>   
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriaviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoria.tab" />
+        <put-attribute name="body" value="auditoria.view" />
+    </definition>    
+    
+    <definition name="auditoria.edit" template="/jsp/admin/auditoria/auditoria.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="true"/>   
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriaeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoria.tab" />
+        <put-attribute name="body" value="auditoria.edit" />
+    </definition>    
+    
+    <definition name="auditoria.create" template="/jsp/admin/auditoria/auditoria.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="false"/>   
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriacreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".AuditoriaCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoria.tab" />
+        <put-attribute name="body" value="auditoria.create"/>
+    </definition>
+
+    <!-- 
+        Auditoria con Usuario                                             
+    -->
+    <definition name="auditoriau.tab" template="/jsp/admin/auditoria/tabs.jsp">
+        <put-attribute name="activeTab" value="AUDITORIAUSUARIO"/>
+    </definition>
+    
+    <definition name=".AuditoriaUsuarioList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriau.tab" />
+        <put-attribute name="body" value="/jsp/admin/auditoria/auditoriausuariolist.jsp" />
+    </definition>    
+    
+    <definition name="auditoriausuario.view" template="/jsp/admin/auditoria/auditoriausuario.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="true"/>   
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriausuarioviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaUsuarioView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriau.tab" />
+        <put-attribute name="body" value="auditoriausuario.view" />
+    </definition>    
+    
+    <definition name="auditoriausuario.edit" template="/jsp/admin/auditoria/auditoriausuario.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="true"/>   
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriausuarioeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaUsuarioEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriau.tab" />
+        <put-attribute name="body" value="auditoriausuario.edit" />
+    </definition>    
+    
+    <definition name="auditoriausuario.create" template="/jsp/admin/auditoria/auditoriausuario.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="false"/>   
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriausuariocreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".AuditoriaUsuarioCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriau.tab" />
+        <put-attribute name="body" value="auditoriausuario.create"/>
+    </definition>
+
+    <!--
+        Auditoria Web                                                      
+    -->
+    
+    <definition name="auditoriweb.tab" template="/jsp/admin/auditoria/tabs.jsp">
+        <put-attribute name="activeTab" value="AUDITORIAWEB"/>
+    </definition>
+    
+    <definition name=".AuditoriaWebList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriweb.tab" />
+        <put-attribute name="body" value="/jsp/admin/auditoria/auditoriaweblist.jsp" />
+    </definition>     
+    
+    <definition name="auditoriaweb.view" template="/jsp/admin/auditoria/auditoriaweb.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriawebviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaWebView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriweb.tab" />
+        <put-attribute name="body" value="auditoriaweb.view" />
+    </definition>    
+    
+    <definition name="auditoriaweb.edit" template="/jsp/admin/auditoria/auditoriaweb.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriawebeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaWebEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriweb.tab" />
+        <put-attribute name="body" value="auditoriaweb.edit" />
+    </definition>    
+    
+    <definition name="auditoriaweb.create" template="/jsp/admin/auditoria/auditoriaweb.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriawebcreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".AuditoriaWebCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriweb.tab" />
+        <put-attribute name="body" value="auditoriaweb.create"/>
+    </definition>
+
+    <!-- 
+        Auditoria Web con Usuario                                          
+    -->
+    
+    <definition name="auditoriwebau.tab" template="/jsp/admin/auditoria/tabs.jsp">
+        <put-attribute name="activeTab" value="AUDITORIAWEBUSUARIO"/>
+    </definition>
+    
+    <definition name=".AuditoriaWebUsuarioList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriwebau.tab" />
+        <put-attribute name="body" value="/jsp/admin/auditoria/auditoriawebusuariolist.jsp" />
+    </definition>    
+    
+    <definition name="auditoriawebusuario.view" template="/jsp/admin/auditoria/auditoriawebusuario.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriawebusuarioviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaWebUsuarioView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriwebau.tab" />
+        <put-attribute name="body" value="auditoriawebusuario.view" />
+    </definition>    
+    
+    <definition name="auditoriawebusuario.edit" template="/jsp/admin/auditoria/auditoriawebusuario.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriawebusuarioeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AuditoriaWebUsuarioEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriwebau.tab" />
+        <put-attribute name="body" value="auditoriawebusuario.edit" />
+    </definition>    
+    
+    <definition name="auditoriawebusuario.create" template="/jsp/admin/auditoria/auditoriawebusuario.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="buttons" value="/jsp/admin/auditoria/auditoriawebusuariocreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".AuditoriaWebUsuarioCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="auditoria.menu"/>
+        <put-attribute name="tabs" value="auditoriwebau.tab" />
+        <put-attribute name="body" value="auditoriawebusuario.create"/>
+    </definition>
+    
+    <!-- =================================================================== -->
+    <!--  Application                                                        -->
+    <!-- =================================================================== -->
+    
+    <!--
+        Actions   
+    -->
+    
+    <definition name="application.menu" extends="adminHeader">
+        <put-attribute name="activeItem" value="APPLICATION"/>
+    </definition>
+    
+    <definition name="action.tab" template="/jsp/admin/aplicaciones/tabs.jsp">
+        <put-attribute name="activeTab" value="ACTION"/>
+    </definition>
+    
+    <definition name=".ActionList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="action.tab" />
+        <put-attribute name="body" value="/jsp/admin/aplicaciones/action/actionlist.jsp" />
+    </definition>    
+    
+    <definition name="action.view" template="/jsp/admin/aplicaciones/action/action.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="view"/>        
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/action/actionviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ActionView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="action.tab" />
+        <put-attribute name="body" value="action.view" />
+    </definition>    
+    
+    <definition name="action.edit" template="/jsp/admin/aplicaciones/action/action.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="edit"/> 
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/action/actioneditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ActionEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="action.tab" />
+        <put-attribute name="body" value="action.edit" />
+    </definition>    
+    
+    <definition name="action.create" template="/jsp/admin/aplicaciones/action/action.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="create"/>   
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/action/actioncreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".ActionCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="action.tab" />
+        <put-attribute name="body" value="action.create"/>
+    </definition>
+    
+    <!-- 
+        Application  
+    -->
+    
+    <definition name="application.tab" template="/jsp/admin/aplicaciones/tabs.jsp">
+        <put-attribute name="activeTab" value="APPLICATION"/>
+    </definition>
+    
+    <definition name=".ApplicationList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="application.tab" />
+        <put-attribute name="body" value="/jsp/admin/aplicaciones/application/applicationlist.jsp" />
+    </definition>    
+    
+    <definition name="application.view" template="/jsp/admin/aplicaciones/application/application.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="view"/>   
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/application/applicationviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ApplicationView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="application.tab" />
+       
+        <put-attribute name="body" value="application.view" />
+    </definition>    
+    
+    <definition name="application.edit" template="/jsp/admin/aplicaciones/application/application.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="edit"/>   
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/application/applicationeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ApplicationEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="application.tab" />
+        <put-attribute name="body" value="application.edit" />
+    </definition>    
+    
+    <definition name="application.create" template="/jsp/admin/aplicaciones/application/application.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="create"/>   
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/application/applicationcreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".ApplicationCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="application.tab" />
+        <put-attribute name="body" value="application.create"/>
+    </definition>
+    
+    <!-- 
+        Module                                                           
+    -->
+    
+    <definition name="module.tab" template="/jsp/admin/aplicaciones/tabs.jsp">
+        <put-attribute name="activeTab" value="MODULE"/>
+    </definition>
+    
+    <definition name=".ModuleList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="module.tab" />
+        <put-attribute name="body" value="/jsp/admin/aplicaciones/module/modulelist.jsp" />
+    </definition>    
+    
+    <definition name="module.view" template="/jsp/admin/aplicaciones/module/module.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="view"/>     
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/module/moduleviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ModuleView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="module.tab" />
+        <put-attribute name="body" value="module.view" />
+    </definition>    
+    
+    <definition name="module.edit" template="/jsp/admin/aplicaciones/module/module.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="edit"/> 
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/module/moduleeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ModuleEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="module.tab" />
+        <put-attribute name="body" value="module.edit" />
+    </definition>    
+    
+    <definition name="module.create" template="/jsp/admin/aplicaciones/module/module.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="create"/>   
+        <put-attribute name="buttons" value="/jsp/admin/aplicaciones/module/modulecreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".ModuleCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="application.menu"/>
+        <put-attribute name="tabs" value="module.tab" />
+        <put-attribute name="body" value="module.create"/>
+    </definition>
+    
+    <!-- =================================================================== -->
+    <!--  Usuario                                                            -->
+    <!-- =================================================================== -->
+    
+    <!--
+        Group 
+    -->
+    
+    <definition name="usuario.menu" extends="adminHeader">
+        <put-attribute name="activeItem" value="USUARIO"/>
+    </definition>
+    
+    <definition name="group.tab" template="/jsp/admin/usuarios/tabs.jsp">
+        <put-attribute name="activeTab" value="GROUP"/>
+    </definition>
+    
+    <definition name=".GroupList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/group/grouplist.jsp" />
+    </definition>    
+    
+    <definition name="group.view" template="/jsp/admin/usuarios/group/group.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="view"/> 
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/group/groupviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".GroupView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="group.view" />
+    </definition>    
+    
+    <definition name="group.edit" template="/jsp/admin/usuarios/group/group.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="edit"/> 
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/group/groupeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".GroupEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="group.edit" />
+    </definition>  
+    
+    <definition name="group.add" template="/jsp/admin/usuarios/group/group.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/group/groupeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".GroupAdd" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="group.add" />
+    </definition>   
+   
+    <definition name="group.del" template="/jsp/admin/usuarios/group/group.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/group/groupeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".GroupDelUser" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="group.add" />
+    </definition>   
+    
+    <definition name="group.create" template="/jsp/admin/usuarios/group/group.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="create"/> 
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/group/groupcreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".GroupCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="group.create"/>
+    </definition>    
+    
+    <definition name=".AddUsuario" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/group/addUsuario/addUsuario.jsp" />
+    </definition>
+    <definition name=".GroupAddUsuarioStep00" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="group.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/group/addUsuario/addUsuario.jsp" />
+    </definition>    
+    
+    
+    
+    
+    
+    <!-- 
+        Rol  
+    -->
+    
+    <definition name="rol.tab" template="/jsp/admin/usuarios/tabs.jsp">
+        <put-attribute name="activeTab" value="ROL"/>
+    </definition>
+    
+    <definition name=".RolList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/rol/rollist.jsp" />
+    </definition>    
+    
+    <definition name="rol.view" template="/jsp/admin/usuarios/rol/rol.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="view"/>   
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/rol/rolviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".RolView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="rol.view" />
+    </definition>    
+    
+    <definition name="rol.edit" template="/jsp/admin/usuarios/rol/rol.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="edit"/>   
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/rol/roleditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".RolEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="rol.edit" />
+    </definition>    
+    
+    <definition name="rol.create" template="/jsp/admin/usuarios/rol/rol.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="actionName" value="create"/>   
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/rol/rolcreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".RolCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="rol.create"/>
+    </definition>
+    
+    <definition name="rol.add" template="/jsp/admin/usuarios/rol/rol.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/rol/roleditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".RolAdd" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="rol.add" />
+    </definition>   
+   
+    <definition name="rol.del" template="/jsp/admin/usuarios/rol/rol.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/rol/roleditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".RolDelUser" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="rol.del" />
+    </definition>   
+    
+    <definition name=".AddUsuarioRol" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/rol/addUsuario/addUsuario.jsp" />
+    </definition>
+    <definition name=".RolAddUsuarioStep00" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/rol/addUsuario/addUsuario.jsp" />
+    </definition>    
+    
+        <definition name=".AddPermisosRol" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/rol/parts/addPermisos.jsp" />
+    </definition>   
+    
+      <definition name=".ResumenPermisosRol" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="rol.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/rol/parts/resumenPermisosRol.jsp" />
+    </definition>   
+    <!-- 
+        Acl 
+    -->
+    
+    <definition name=".AclList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="/jsp/admin/usuarios/tabs.jsp" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/acl/acllist.jsp" />
+    </definition>    
+    
+    <definition name="acl.view" template="/jsp/admin/usuarios/acl/acl.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/acl/aclviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AclView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="/jsp/admin/usuarios/tabs.jsp" />
+        <put-attribute name="body" value="acl.view" />
+    </definition>    
+    
+    <definition name="acl.edit" template="/jsp/admin/usuarios//aclacl.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios//aclacleditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AclEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="/jsp/admin/usuarios/tabs.jsp" />
+        <put-attribute name="body" value="aacl.edit" />
+    </definition>    
+    
+    <definition name="acl.create" template="/jsp/admin/usuarios//aclacl.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="buttons" value="/jsp/admin/usuarios//aclaclcreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".AclCreate" extends=".BaseAdminWithSideBarAndHeader">
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="/jsp/admin/usuarios/tabs.jsp" />
+        <put-attribute name="body" value="acl.create"/>
+    </definition>
+    
+    <!-- 
+        Usuario     
+    -->
+    
+    <definition name="usuario.tab" template="/jsp/admin/usuarios/tabs.jsp">
+        <put-attribute name="activeTab" value="USUARIO"/>
+    </definition>
+    
+    <definition name=".UsuarioList" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/usuariolist.jsp" />
+    </definition>    
+    
+    <definition name="usuario.view" template="/jsp/admin/usuarios/usuario/usuario.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="actionName" value="view"/>   
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/usuario/usuarioviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".UsuarioView" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="usuario.view" />
+    </definition>    
+    
+    <definition name="usuario.edit" template="/jsp/admin/usuarios/usuario/usuario.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="actionName" value="edit"/>   
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/usuario/usuarioeditbuttons.jsp" />
+    </definition> 
+    
+    <definition name=".UsuarioEdit" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="usuario.edit" />
+    </definition>    
+    
+    <definition name=".UsuarioCreateFromPersonStep00" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/fromperson/step00.jsp" />
+    </definition>    
+    
+    <definition name=".UsuarioCreateFromPersonStep01" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/fromperson/step01.jsp" />
+    </definition>    
+    
+    <definition name=".UsuarioCreateFromScratchStep00" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/fromscratch/step00.jsp" />
+    </definition>    
+    
+    <definition name=".UsuarioCreateFromScratchStep01" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/fromscratch/step01.jsp" />
+    </definition>    
+    
+    <definition name=".AddAddress" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/parts/addAddress.jsp" />
+    </definition>
+  
+    <definition name=".PermisosTab"  extends=".BaseAjax">
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/parts/permisosTab.jsp" />
+    </definition>
+
+
+    <definition name="usuario.permisos" template="/jsp/admin/usuarios/usuario/usuario.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/> 
+                <put-attribute name="actionName" value="edit"/>   
+        <put-attribute name="buttons" value="/jsp/admin/usuarios/usuario/usuarioviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".PermisosTab2" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="usuario.permisos" />
+    </definition>
+
+               
+    <definition name=".AddPermisos" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/parts/addPermisos.jsp" />
+    </definition>   
+    
+      <definition name=".ResumenPermisos" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="usuario.menu"/>
+        <put-attribute name="tabs" value="usuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/usuarios/usuario/parts/resumenPermisos.jsp" />
+    </definition>   
+    
+    
+    
+    
+    <!-- =================================================================== -->
+    <!--  Estadisticas por accion                                            -->
+    <!-- =================================================================== -->
+          
+    <definition name="estadisticas.menu" extends="adminHeader">
+        <put-attribute name="activeItem" value="ESTADISTICAS"/>
+    </definition>
+    
+    <definition name="estadisticasaccion.tab" template="/jsp/admin/estadisticas/tabs.jsp">
+        <put-attribute name="activeTab" value="ESTACCION"/>
+    </definition>
+    
+    <definition name=".EstadisticasPorAccionDashBoard" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="estadisticas.menu"/>
+        <put-attribute name="tabs" value="estadisticasaccion.tab" />
+        <put-attribute name="body" value="/jsp/admin/estadisticas/accion.jsp" />
+    </definition>   
+       
+    <!-- 
+        Estadisticas por modulo  
+    -->
+          
+    <definition name="estadisticasmodulo.tab" template="/jsp/admin/estadisticas/tabs.jsp">
+        <put-attribute name="activeTab" value="ESTMODULO"/>
+    </definition>
+    
+    <definition name=".EstadisticasPorModuloDashBoard" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="estadisticas.menu"/>
+        <put-attribute name="tabs" value="estadisticasmodulo.tab" />
+        <put-attribute name="body" value="/jsp/admin/estadisticas/modulo.jsp" />
+    </definition>   
+       
+    <!-- 
+        Estadisticas por usuario 
+    -->
+        
+    <definition name="estadisticasusuario.tab" template="/jsp/admin/estadisticas/tabs.jsp">
+        <put-attribute name="activeTab" value="ESTUSUARIO"/>
+    </definition>
+    
+    <definition name=".EstadisticasPorUsuarioDashBoard" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="estadisticas.menu"/>
+        <put-attribute name="tabs" value="estadisticasusuario.tab" />
+        <put-attribute name="body" value="/jsp/admin/estadisticas/usuario.jsp" />
+    </definition>   
+    
+    
+    <!-- =================================================================== -->
+    <!--  Configuracion                                                      -->
+    <!-- =================================================================== -->
+        
+    <definition name="configuracion.menu" extends="adminHeader">
+        <put-attribute name="activeItem" value="CONFIGURACION"/>
+    </definition>
+    
+    <definition name="configuracion.tab" template="/jsp/admin/configuracion/tabs.jsp">
+        <put-attribute name="activeTab" value="CONFIGURACION"/>
+    </definition>
+    
+    <definition name=".Configuracion" extends=".BaseAdminWithSideBarAndHeader" >
+        <put-attribute name="header" value="configuracion.menu"/>
+        <put-attribute name="tabs" value="configuracion.tab" />
+        <put-attribute name="body" value="/jsp/admin/configuracion/configuracion.jsp" />
+    </definition>   
+    
+    
+    <!-- =================================================================== -->
+    <!--  Fin                                                                -->
+    <!-- =================================================================== -->
+   
+</tiles-definitions>

@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+    
+    <!-- =================================================================== -->
+    <!--  DashBoard                                                          -->
+    <!-- =================================================================== -->
+        
+    <definition name="dashboardprv.menu" extends="privateHeader">
+        <put-attribute name="activeItem" value="DASHBOARD"/>
+    </definition>
+    
+    <definition name="dashboardprv.tab" template="/jsp/prv/tabs.jsp">
+        <put-attribute name="activeTab" value="DASHBOARD"/>
+    </definition>
+    
+    <definition name=".PrvDashBoard" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="dashboardprv.menu"/>
+        <put-attribute name="tabs" value="dashboardprv.tab" />
+        <put-attribute name="body" value="/jsp/prv/prv.jsp" />
+    </definition>   
+
+    <!-- =================================================================== -->
+    <!--  Account Settings                                                   -->
+    <!-- =================================================================== -->
+    
+    <definition name="security.menu" extends="privateHeader">
+        <put-attribute name="activeItem" value="SECURITY"/>
+    </definition>
+    
+    <definition name="security.tab" template="/jsp/prv/accountsettings/tabs.jsp">
+        <put-attribute name="activeTab" value="SECURITY"/>
+    </definition>
+    
+    <definition name=".Security" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="security.menu"/>
+        <put-attribute name="tabs" value="security.tab" />
+        <put-attribute name="body" value="/jsp/prv/accountsettings/security.jsp" />
+    </definition>   
+    
+     <definition name="security.edit" template="/jsp/prv/accountsettings/security.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/prv/accountsettings/securityeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".SecurityEdit" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="security.menu"/>
+        <put-attribute name="tabs" value="security.tab" />
+        <put-attribute name="body" value="security.edit" />
+    </definition> 
+    
+    
+    
+    <!-- =================================================================== -->
+    <!--  Messages                                                            -->
+    <!-- =================================================================== -->
+    
+    <!-- 
+        Activity                                                     
+    -->
+        
+    <definition name="messages.menu" extends="privateHeader">
+        <put-attribute name="activeItem" value="MESSAGES"/>
+    </definition>
+    
+    <definition name="activity.tab" template="/jsp/prv/activity/tabs.jsp">
+        <put-attribute name="activeTab" value="ACTIVITY"/>
+    </definition>
+    
+    <definition name=".ActivityResume" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="activity.tab" />
+        <put-attribute name="body" value="/jsp/prv/activity/activityresume.jsp" />
+    </definition>    
+    
+    <definition name=".ActivityList" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="activity.tab" />
+        <put-attribute name="body" value="/jsp/prv/activity/activitylist.jsp" />
+    </definition>    
+    
+    <definition name="activity.view" template="/jsp/prv/activity/activity.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="buttons" value="/jsp/prv/activity/activityviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ActivityView" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="activity.tab" />
+        <put-attribute name="body" value="activity.view" />
+    </definition>    
+    
+    <definition name="activity.edit" template="/jsp/prv/activity/activity.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/prv/activity/activityeditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".ActivityEdit" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="activity.tab" />
+        <put-attribute name="body" value="activity.edit" />
+    </definition>    
+    
+    <definition name="activity.create" template="/jsp/prv/activity/activity.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="buttons" value="/jsp/prv/activity/activitycreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".ActivityCreate" extends=".BasePrivateWithSideBarAndHeader">
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="activity.tab" />
+        <put-attribute name="body" value="activity.create"/>
+    </definition>
+    
+    <!-- 
+        Mail box                                                           
+    -->
+        
+    <definition name="mail.tab" template="/jsp/prv/mailbox/tabs.jsp">
+        <put-attribute name="activeTab" value="MAIL"/>
+    </definition>
+    
+    <definition name=".MailBox" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="mail.tab" />
+        <put-attribute name="body" value="/jsp/prv/mailbox/mailbox.jsp" />
+    </definition>    
+    
+    <definition name="mail.view" template="/jsp/prv/mailbox/mailview.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="buttons" value="/jsp/prv/mailbox/mailviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".MailView" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="mail.tab" />
+        <put-attribute name="body" value="mail.view" />
+    </definition>    
+    
+    <definition name="mail.edit" template="/jsp/prv/mailbox/mailview.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/prv/mailbox/maileditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".MailEdit" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="mail.tab" />
+        <put-attribute name="body" value="mail.edit" />
+    </definition>    
+    
+    <definition name="mail.create" template="/jsp/prv/mailbox/mailcompose.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="buttons" value="/jsp/prv/mailbox/mailcreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".MailCreate" extends=".BasePrivateWithSideBarAndHeader">
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="mail.tab" />
+        <put-attribute name="body" value="mail.create"/>
+    </definition>
+    
+    <!--
+        Message                                                          
+    -->
+        
+    <definition name="messages.tab" template="/jsp/prv/messages/tabs.jsp">
+        <put-attribute name="activeTab" value="MESSAGES"/>
+    </definition>
+    
+    <definition name=".MessagesList" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="messages.tab" />
+        <put-attribute name="body" value="/jsp/prv/messages/messageslist.jsp" />
+    </definition>    
+    
+    <definition name="messages.view" template="/jsp/prv/messages/messages.jsp">
+        <put-attribute name="readOnlyField" value="ALL"/>
+        <put-attribute name="buttons" value="/jsp/prv/messages/messagesviewbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".MessagesView" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="messages.tab" />
+        <put-attribute name="body" value="messages.view" />
+    </definition>    
+    
+    <definition name="messages.edit" template="/jsp/prv/messages/messages.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/prv/messages/messageseditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".MessagesEdit" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="messages.tab" />
+        <put-attribute name="body" value="messages.edit" />
+    </definition>    
+    
+    <definition name="messages.create" template="/jsp/prv/messages/messages.jsp">
+        <put-attribute name="readOnlyField" value="NONE"/>
+        <put-attribute name="buttons" value="/jsp/prv/messages/messagescreatebuttons.jsp"/>
+    </definition>
+    
+    <definition name=".MessagesCreate" extends=".BasePrivateWithSideBarAndHeader">
+        <put-attribute name="header" value="messages.menu"/>
+        <put-attribute name="tabs" value="messages.tab" />
+        <put-attribute name="body" value="messages.create"/>
+    </definition>
+    
+    <!-- =================================================================== -->
+    <!--  Profile                                                            -->
+    <!-- =================================================================== -->
+        
+    <definition name="about.menu" extends="privateHeader">
+        <put-attribute name="activeItem" value="ABOUT"/>
+    </definition>
+    
+    <definition name="about.tab" template="/jsp/prv/profile/tabs.jsp">
+        <put-attribute name="activeTab" value="ABOUT"/>
+    </definition>
+    
+    <definition name=".About" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="about.menu"/>
+        <put-attribute name="tabs" value="about.tab" />
+        <put-attribute name="body" value="/jsp/prv/profile/about.jsp" />
+    </definition> 
+    
+     <definition name="about.edit" template="/jsp/prv/profile/about.jsp">
+        <put-attribute name="readOnlyField" value="PRIMARY_KEYS"/>
+        <put-attribute name="buttons" value="/jsp/prv/profile/parts/abouteditbuttons.jsp"/>
+    </definition> 
+    
+    <definition name=".AboutEdit" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="about.menu"/>
+        <put-attribute name="tabs" value="about.tab" />
+        <put-attribute name="body" value="about.edit" />
+    </definition>  
+    
+     <definition name=".AddAddressProfile" extends=".BasePrivateWithSideBarAndHeader" >
+        <put-attribute name="header" value="about.menu"/>
+        <put-attribute name="tabs" value="about.tab" />
+        <put-attribute name="body" value="/jsp/prv/profile/parts/addAddress.jsp" />
+    </definition>
+    <!-- =================================================================== -->
+    <!--  Fin                                                                -->
+    <!-- =================================================================== -->
+
+</tiles-definitions>

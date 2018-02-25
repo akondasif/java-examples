@@ -1,0 +1,58 @@
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"       
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+
+    <!-- Definimos el nombre y la localizacion del fichero de cadenas para la i18n.
+    El ficheero tiene que estar en uno de los directorios del proyecto dentro del
+    classpath-->
+    <constant name="struts.custom.i18n.resources" value="i18n.messages" />
+    
+    <!-- Definicion del modo de developer de struts 2, en caso de true los mensajes
+    que nos muestra el navegador en caso de fallo son mucho mas ricos en informacion-->
+    <constant name="struts.devMode" value="false"/>
+    
+    <package name="permisos-default" namespace="/" extends="struts-default">
+
+        <result-types>
+            <result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+        </result-types>
+         
+<!--        <interceptors>
+            <interceptor name="accesoRestringido" class="seguridad.SecurityInterceptor"/>
+            <interceptor name="cambioContrasena" class="seguridad.PasswordInterceptor"/>
+            <interceptor name="staticParams" class="com.opensymphony.xwork2.interceptor.StaticParametersInterceptor"/>
+            <interceptor-stack name="basicStack">
+                <interceptor-ref name="accesoRestringido"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>-->
+
+        <default-interceptor-ref name="defaultStack"/>
+        
+        
+  <global-results>
+            <result name="AccessDeniedResult" type="redirect">/AccessDenied.action</result>
+            <result name="ExceptionResult" type="redirect">/500.action</result>
+        </global-results>
+
+        <global-exception-mappings>
+            <exception-mapping exception="es.itnoroeste.core.exceptions.UnauthorizedAccessException" result="AccessDeniedResult"/>
+            <exception-mapping exception="java.lang.Exception" result="ExceptionResult"/>
+        </global-exception-mappings>
+    </package>
+  
+    <!-- Incluimos lod ficheros de configuracion del sistema.
+    common..: Definicion de acciones comunes del proyecto
+    prv.....: Definicion de las acciones de la parte privada del proyecto
+    public..: Definicion de las acciones de la parte publica del proyecto
+    admin...: Definicion de las acciones de la parte de administracion del proyecto.
+    ajax....: Definicion de las acciones de tipo Ajax-->
+    <include file="../struts/struts-common.xml"/>
+    <include file="../struts/struts-prv.xml"/>
+    <include file="../struts/struts-public.xml"/>
+    <include file="../struts/struts-admin.xml"/>
+    <include file="../struts/struts-ajax.xml"/>
+    
+</struts>

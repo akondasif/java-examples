@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+  <session-factory>
+    <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+    <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+     <property name="hibernate.connection.url">jdbc:mysql://dblanza.dev.pp.es:3306/security</property>
+    <property name="hibernate.connection.username">test</property>
+    <property name="hibernate.connection.password">test</property>
+<!--  <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/security</property>
+    <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">root</property>-->
+    <property name="hibernate.current_session_context_class">thread</property>
+    <property name="hibernate.use_sql_comments">true</property>
+    <property name="hibernate.show_sql">true</property>
+    
+    <property name="c3p0.min_size">5</property>
+    <property name="c3p0.max_size">20</property>
+    <property name="c3p0.timeout">1800</property>
+    <property name="c3p0.max_statements">50</property>
+    
+    <property name="c3p0.idle_test_period">1000</property>
+    
+ <!--   <mapping resource="es/itnoroeste/common/territory/es/comarca/Comarca.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/common/comunidad/Comunidad.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/es/partidojudicial/PartidoJudicial.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/es/distrito/Distrito.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/es/elm/ELM.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/es/isla/Isla.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/common/localidad/Localidad.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/common/pais/Pais.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/es/provincia/Provincia.hbm.xml"/>
+    <mapping resource="es/itnoroeste/common/territory/es/agrupacionislas/AgrupacionIslas.hbm.xml"/>-->
+        
+        
+    <mapping resource="es/imaro/pp/common/territorio/comunidad/Comunidad.hbm.xml"/>
+    <mapping resource="es/imaro/pp/common/territorio/provincia/Provincia.hbm.xml"/>
+    <mapping resource="es/imaro/pp/common/territorio/isla/Isla.hbm.xml"/>
+    <mapping resource="es/imaro/pp/common/territorio/localidad/Localidad.hbm.xml"/>
+    <mapping resource="es/imaro/pp/common/territorio/distrito/Distrito.hbm.xml"/>
+    <mapping resource="es/imaro/pp/common/territorio/elm/ELM.hbm.xml"/>
+    <mapping resource="es/imaro/pp/common/territorio/pais/Pais.hbm.xml"/>
+    
+     <mapping resource="es/itnoroeste/empleados/company/Company.hbm.xml"/>
+    <mapping resource="es/itnoroeste/empleados/departamento/Departamento.hbm.xml"/>
+    <mapping resource="es/itnoroeste/empleados/empleado/Empleado.hbm.xml"/>
+   <mapping resource="es/itnoroeste/empleados/sedebase/SedeBase.hbm.xml"/>
+    <mapping resource="es/itnoroeste/empleados/informacionbancaria/InformacionBancaria.hbm.xml"/>
+    <mapping resource="es/itnoroeste/empleados/localizacion/Localizacion.hbm.xml"/>
+    
+    
+    <mapping resource="es/itnoroeste/social/name/Name.hbm.xml"/>
+    <mapping resource="es/itnoroeste/social/bodytype/BodyType.hbm.xml"/>
+    <mapping resource="es/itnoroeste/social/account/Account.hbm.xml"/>
+
+    <mapping resource="es/itnoroeste/social/person/Person.hbm.xml"/>
+    <mapping resource="es/itnoroeste/social/message/Message.hbm.xml"/>
+    <mapping resource="es/itnoroeste/social/medialink/MediaLink.hbm.xml"/>
+    <mapping resource="es/itnoroeste/social/messagecollection/MessageCollection.hbm.xml"/> 
+
+    <mapping resource="es/itnoroeste/social/mediaitem/MediaItem.hbm.xml"/>
+    <mapping resource="es/itnoroeste/social/address/Address.hbm.xml"/> 
+    <mapping resource="es/itnoroeste/social/album/Album.hbm.xml"/> 
+    <mapping resource="es/itnoroeste/social/organization/Organization.hbm.xml"/> 
+    <mapping resource="es/itnoroeste/social/activityobject/ActivityObject.hbm.xml"/> 
+    <mapping resource="es/itnoroeste/social/activityentry/ActivityEntry.hbm.xml"/> 
+    
+    <mapping resource="es/itnoroeste/core/security/auditory/model/auditory/Auditory.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/auditory/model/userauditory/UserAuditory.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/auditory/model/httpauditory/HttpAuditory.hbm.xml"/>    
+    <mapping resource="es/itnoroeste/core/security/auditory/model/userhttpauditory/UserHttpAuditory.hbm.xml"/>    
+    
+    <mapping resource="es/itnoroeste/core/security/acl/model/acl/Acl.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/acl/model/aclentry/AclEntry.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/acl/model/action/Action.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/acl/model/application/Application.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/acl/model/module/Module.hbm.xml"/>
+    
+    <mapping resource="es/itnoroeste/core/security/authentication/model/group/Group.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/authentication/model/user/User.hbm.xml"/>
+    <mapping resource="es/itnoroeste/core/security/authentication/model/rol/Rol.hbm.xml"/>
+    
+    
+  </session-factory>
+</hibernate-configuration>
