@@ -1,0 +1,21 @@
+server:
+  port: ${PORT:6161}
+  
+spring:
+  application:
+    name: hystrix-dashboard
+      
+---
+spring:
+  profiles: default
+  cloud:
+    config:
+      uri: http://localhost:8888
+spring.profiles.active: development
+
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: http://config-service:8888

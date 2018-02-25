@@ -1,0 +1,95 @@
+version: '2'
+
+services:
+    
+# System services
+# ------------------------------------------------------------------------------
+
+    config-service:
+        image: devcircus/config-service
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker   
+        ports:
+         - 8888:8888
+
+    hystrix-dashboard:
+        image: devcircus/hystrix-dashboard
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker   
+        ports:
+         - 6161:6161
+
+    discovery-service:
+        image: devcircus/discovery-service
+        ports:
+         - 8761:8761
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker   
+
+    mysql:
+        image: mysql:5.7
+        ports:
+         - 3306:3306
+        environment:
+         - MYSQL_ROOT_PASSWORD=dbpass
+         - MYSQL_DATABASE=dev
+   
+# Business services
+# ------------------------------------------------------------------------------
+   
+    user-service:
+        image: devcircus/user-service
+        ports:
+         - 8181:8181
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+
+    catalog-service:
+        image: devcircus/catalog-service
+        ports:
+         - 6379:6379
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+
+    account-service:
+        image: devcircus/account-service
+        ports:
+         - 8787:8787
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+
+    inventory-service:
+        image: devcircus/inventory-service
+        ports:
+         - 7474:7474
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+
+    cart-service:
+        image: devcircus/cart-service
+        ports:
+         - 7676:7676
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+     
+    order-service:
+        image: devcircus/order-service
+        ports:
+         - 3132:3132
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+     
+    payment-service:
+        image: devcircus/payment-service
+        ports:
+         - 4732:4732
+        environment:
+         - SPRING_PROFILES_ACTIVE=docker
+     
+# Networks
+# ------------------------------------------------------------------------------
+       
+networks:
+    default:
+        external:
+            name: devcircus-microservices-network
